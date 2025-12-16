@@ -17,12 +17,12 @@ def main():
     all_locations = load_json(r'c:\Users\ohmeg\code\FoodFinder\server\data\all-locations.json')
     print(f"Current locations: {len(all_locations)}")
     
-    # Load OSM locations
-    osm_locations = load_json(r'c:\Users\ohmeg\code\FoodFinder\server\data\osm-locations.json')
-    print(f"OSM locations: {len(osm_locations)}")
+    # Load community fridges
+    fridges = load_json(r'c:\Users\ohmeg\code\FoodFinder\server\data\community-fridges.json')
+    print(f"Community fridges: {len(fridges)}")
     
     # Merge
-    all_locations.extend(osm_locations)
+    all_locations.extend(fridges)
     print(f"Total after merge: {len(all_locations)}")
     
     # Save back to all-locations.json
