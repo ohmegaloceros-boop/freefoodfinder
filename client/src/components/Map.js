@@ -128,7 +128,7 @@ function MapClickHandler({ onMapClick }) {
  * @param {Array} cityCenter - [lat, lng] coordinates for city center
  * @param {boolean} isSelectingOnMap - True when in "click to select" mode
  */
-function Map({ locations, selectedLocation, onLocationClick, onMapClick, cityCenter, isSelectingOnMap }) {
+function Map({ locations, selectedLocation, onLocationClick, onMapClick, cityCenter, isSelectingOnMap, clickedCoordinates, isProcessingClick, onSkipGeocoding }) {
   const defaultCenter = cityCenter || [39.7392, -104.9903]; // Fallback to Denver
   const defaultZoom = 12;
 
@@ -137,7 +137,17 @@ function Map({ locations, selectedLocation, onLocationClick, onMapClick, cityCen
       {isSelectingOnMap && (
         <div className="selecting-overlay">
           <div className="selecting-message">
-            📍 Click anywhere on the map to select a location
+            {isProcessingClick ? (
+              <>
+                <div className="loading-spinner"></div>
+                <span>Finding address...</span>
+                <button className="skip-button" onClick={onSkipGeocoding}>
+                  Skip & Enter Manually
+                </button>
+              </>
+            ) : (
+              '📍 Click anywhere on the map to select a location'
+            )}
           </div>
         </div>
       )}
@@ -153,6 +163,19 @@ function Map({ locations, selectedLocation, onLocationClick, onMapClick, cityCen
         
         <MapController selectedLocation={selectedLocation} cityCenter={cityCenter} />
         <MapClickHandler onMapClick={onMapClick} />
+        
+        {/* Temporary marker for clicked location during processing */}
+        {clickedCoordinates && isProcessingClick && (
+          <Marker
+            position={[clickedCoordinates.lat, clickedCoordinates.lng]}
+            icon={L.divIcon({
+              className: 'temp-marker',
+              html: '<div class="temp-marker-pin">📍</div>',
+              iconSize: [30, 30],
+              iconAnchor: [15, 30]
+            })}
+          />
+        )}
         
         {locations.map(location => (
           <Marker

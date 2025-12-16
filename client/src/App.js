@@ -42,6 +42,7 @@ function App() {
   const [clickedCoordinates, setClickedCoordinates] = useState(null);
   const [isSelectingOnMap, setIsSelectingOnMap] = useState(false);
   const [locationData, setLocationData] = useState(null); // Reverse geocoded address
+  const [isProcessingClick, setIsProcessingClick] = useState(false); // Prevent multiple clicks
   
   // Mobile UI state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Hamburger menu toggle
@@ -126,9 +127,10 @@ function App() {
    * @param {Object} coordinates - {lat, lng} from map click
    */
   const handleMapClick = async (coordinates) => {
-    if (!isSelectingOnMap) return;
+    if (!isSelectingOnMap || isProcessingClick) return; // Prevent multiple clicks
     
-    setClickedCoordinates(coordinates);
+    setIsProcessingClick(true); // Block additional clicks
+    setClickedCoordinates(coordinates); // Show marker immediately
     
     /**
      * Reverse Geocoding: Convert coordinates to address
@@ -157,6 +159,7 @@ function App() {
     }
     
     setIsSelectingOnMap(false);
+    setIsProcessingClick(false); // Allow new clicks
     setIsSubmissionFormOpen(true);
   };
 
@@ -165,6 +168,17 @@ function App() {
     setClickedCoordinates(null);
     setLocationData(null);
     setIsSelectingOnMap(false);
+    setIsProcessingClick(false);
+  };
+
+  /**
+   * Skip geocoding and open form immediately
+   * Allows user to manually enter address if geocoding is slow
+   */
+  const handleSkipGeocoding = () => {
+    setIsSelectingOnMap(false);
+    setIsProcessingClick(false);
+    setIsSubmissionFormOpen(true);
   };
 
   // ========== RENDER ==========
@@ -235,6 +249,9 @@ function App() {
             onMapClick={handleMapClick}
             cityCenter={cityConfig[selectedCity].center}
             isSelectingOnMap={isSelectingOnMap}
+            clickedCoordinates={clickedCoordinates}
+            isProcessingClick={isProcessingClick}
+            onSkipGeocoding={handleSkipGeocoding}
           />
         </main>
       </div>

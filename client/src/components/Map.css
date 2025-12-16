@@ -6,10 +6,29 @@
 
 .leaflet-map.selecting-mode {
   cursor: crosshair !important;
+  touch-action: manipulation; /* Better mobile tap response */
 }
 
 .leaflet-map.selecting-mode * {
   cursor: crosshair !important;
+}
+
+/* Improve touch target size on mobile */
+@media (max-width: 768px) {
+  .leaflet-map.selecting-mode {
+    touch-action: auto;
+  }
+  
+  .selecting-message {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    max-width: 90vw;
+  }
+  
+  .skip-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
 }
 
 .selecting-overlay {
@@ -30,6 +49,60 @@
   font-weight: 600;
   font-size: 1rem;
   animation: pulse 2s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.skip-button {
+  background: white;
+  color: #43a047;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.2s;
+}
+
+.skip-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.skip-button:active {
+  transform: translateY(0);
+}
+
+.temp-marker {
+  background: transparent;
+  border: none;
+}
+
+.temp-marker-pin {
+  font-size: 30px;
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes pulse {
