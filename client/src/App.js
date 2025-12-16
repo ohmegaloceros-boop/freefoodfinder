@@ -280,6 +280,8 @@ function App() {
             onMapBoundsChange={handleMapBoundsChange}
             defaultCenter={mapCenter}
             defaultZoom={mapZoom}
+            center={mapCenter}
+            zoom={mapZoom}
             isSelectingOnMap={isSelectingOnMap}
             clickedCoordinates={clickedCoordinates}
             isProcessingClick={isProcessingClick}

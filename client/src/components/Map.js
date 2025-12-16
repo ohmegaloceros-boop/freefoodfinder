@@ -69,9 +69,17 @@ const icons = {
  * Responsibilities:
  * - Flies to selected location when user clicks marker/list item
  * - Tracks map bounds and reports changes to parent component
+ * - Updates map view when center/zoom props change (e.g., user location detected)
  */
-function MapController({ selectedLocation, onMapBoundsChange }) {
+function MapController({ selectedLocation, onMapBoundsChange, center, zoom }) {
   const map = useMap();
+  
+  // Update map view when center or zoom changes (e.g., geolocation)
+  useEffect(() => {
+    if (center && zoom) {
+      map.setView(center, zoom);
+    }
+  }, [center, zoom, map]);
   
   // Fly to selected location
   useEffect(() => {
@@ -142,10 +150,12 @@ function MapClickHandler({ onMapClick }) {
  * @param {Function} onMapBoundsChange - Callback when viewport changes
  * @param {Array} defaultCenter - [lat, lng] initial map center
  * @param {number} defaultZoom - Initial zoom level
+ * @param {Array} center - [lat, lng] current map center (can change dynamically)
+ * @param {number} zoom - Current zoom level (can change dynamically)
  * @param {boolean} isSelectingOnMap - True when in "click to select" mode
  * @param {Array} userLocation - [lat, lng] of user's geolocation if available
  */
-function Map({ locations, selectedLocation, onLocationClick, onMapClick, onMapBoundsChange, defaultCenter, defaultZoom, isSelectingOnMap, clickedCoordinates, isProcessingClick, onSkipGeocoding, userLocation }) {
+function Map({ locations, selectedLocation, onLocationClick, onMapClick, onMapBoundsChange, defaultCenter, defaultZoom, center, zoom, isSelectingOnMap, clickedCoordinates, isProcessingClick, onSkipGeocoding, userLocation }) {
 
   return (
     <>
@@ -176,7 +186,7 @@ function Map({ locations, selectedLocation, onLocationClick, onMapClick, onMapBo
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         
-        <MapController selectedLocation={selectedLocation} onMapBoundsChange={onMapBoundsChange} />
+        <MapController selectedLocation={selectedLocation} onMapBoundsChange={onMapBoundsChange} center={center} zoom={zoom} />
         <MapClickHandler onMapClick={onMapClick} />
         
         {/* User's current location marker */}
