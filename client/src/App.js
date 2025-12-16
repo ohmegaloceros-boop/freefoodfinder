@@ -67,7 +67,7 @@ function App() {
    * Queries the backend API for location data specific to the selected city
    */
   useEffect(() => {
-    fetch(`http://localhost:5000/api/locations?city=${selectedCity}`)
+    fetch(`/api/locations?city=${selectedCity}`)
       .then(res => res.json())
       .then(data => {
         setLocations(data);
