@@ -25,6 +25,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors()); // Enable Cross-Origin requests from React frontend
 app.use(express.json()); // Parse JSON request bodies
 
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 // ========== API ROUTES ==========
 
 /**
@@ -101,6 +104,11 @@ app.post('/api/submissions', (req, res) => {
 
   console.log('New submission received:', submission.name);
   res.status(201).json({ message: 'Submission received successfully', id: submissions.length });
+});
+
+// Serve React app for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 // Only start server if not in Vercel serverless environment
