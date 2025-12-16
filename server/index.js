@@ -17,8 +17,6 @@ const fs = require('fs');
 const path = require('path');
 const allLocations = require('./data/all-locations.json');
 
-console.log('Loaded locations:', allLocations.length);
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
