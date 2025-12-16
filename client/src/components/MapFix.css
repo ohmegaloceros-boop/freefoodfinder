@@ -1,12 +1,12 @@
 /* Fix zoom controls position below fixed header */
 .leaflet-top {
   position: fixed !important;
-  top: 110px !important;
+  top: 120px !important;
 }
 
 /* Ensure zoom controls stay below header on mobile */
 @media (max-width: 768px) {
   .leaflet-top {
-    top: 110px !important;
+    top: 120px !important;
   }
 }
