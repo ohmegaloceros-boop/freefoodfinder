@@ -14,7 +14,7 @@
  * - Mobile-responsive design with slide-out sidebar
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Map from './components/Map';
 import FilterPanel from './components/FilterPanel';
 import LocationList from './components/LocationList';
@@ -26,9 +26,9 @@ function App() {
   
   // Location data state
   const [locations, setLocations] = useState([]); // All locations from API
-  const [filteredLocations, setFilteredLocations] = useState([]); // Filtered by type
-  const [selectedCity, setSelectedCity] = useState('denver'); // Current city
+  const [filteredLocations, setFilteredLocations] = useState([]); // Filtered by type and viewport
   const [selectedLocation, setSelectedLocation] = useState(null); // Location clicked on map/list
+  const [mapBounds, setMapBounds] = useState(null); // Current map viewport bounds
   
   // Filter state - controls which types of locations are shown
   const [selectedTypes, setSelectedTypes] = useState({
@@ -47,28 +47,18 @@ function App() {
   // Mobile UI state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Hamburger menu toggle
 
-  // City configuration - coordinates for map centering
-  const cityConfig = {
-    denver: {
-      name: 'Denver',
-      state: 'Colorado',
-      center: [39.7392, -104.9903]
-    },
-    seattle: {
-      name: 'Seattle',
-      state: 'Washington',
-      center: [47.6062, -122.3321]
-    }
-  };
+  // Default map center (centered on USA)
+  const defaultCenter = [39.8283, -98.5795]; // Geographic center of USA
+  const defaultZoom = 4;
 
   // ========== DATA FETCHING ==========
   
   /**
-   * Fetch locations when city changes
-   * Queries the backend API for location data specific to the selected city
+   * Fetch all locations on mount
+   * Loads complete national dataset from API
    */
   useEffect(() => {
-    fetch(`/api/locations?city=${selectedCity}`)
+    fetch('/api/locations')
       .then(res => res.json())
       .then(data => {
         setLocations(data);
@@ -76,21 +66,29 @@ function App() {
       })
       .catch(err => {
         console.error('Error fetching locations:', err);
-        // Fallback to sample data if API is not available
-        const sampleData = require('./data/sampleLocations.json');
-        setLocations(sampleData);
-        setFilteredLocations(sampleData);
       });
-  }, [selectedCity]);
+  }, []);
 
   /**
-   * Filter locations based on selected types
-   * Updates whenever user toggles food bank, fridge, or food box filters
+   * Filter locations based on selected types and viewport bounds
+   * Updates whenever user toggles filters or pans/zooms map
    */
   useEffect(() => {
-    const filtered = locations.filter(location => selectedTypes[location.type]);
+    let filtered = locations.filter(location => selectedTypes[location.type]);
+    
+    // Filter by viewport if map bounds are available
+    if (mapBounds) {
+      filtered = filtered.filter(location => {
+        const { lat, lng } = location.coordinates;
+        return lat <= mapBounds.north && 
+               lat >= mapBounds.south && 
+               lng >= mapBounds.west && 
+               lng <= mapBounds.east;
+      });
+    }
+    
     setFilteredLocations(filtered);
-  }, [selectedTypes, locations]);
+  }, [selectedTypes, locations, mapBounds]);
 
   // ========== EVENT HANDLERS ==========
   
@@ -181,25 +179,24 @@ function App() {
     setIsSubmissionFormOpen(true);
   };
 
+  /**
+   * Handle map bounds change (when user pans/zooms)
+   * Updates visible locations based on current viewport
+   */
+  const handleMapBoundsChange = useCallback((bounds) => {
+    setMapBounds(bounds);
+  }, []);
+
   // ========== RENDER ==========
   
   return (
     <div className="App">
-      {/* Header with city selector and suggest button */}
+      {/* Header with suggest button */}
       <header className="app-header">
         <div className="header-content">
           <div className="header-title">
             <h1>🍎 FreeFoodFinder</h1>
-            <div className="city-selector">
-              <select 
-                value={selectedCity} 
-                onChange={(e) => setSelectedCity(e.target.value)}
-                className="city-dropdown"
-              >
-                <option value="denver">Denver, CO</option>
-                <option value="seattle">Seattle, WA</option>
-              </select>
-            </div>
+            <p>Find free food resources nationwide</p>
           </div>
           <button 
             className="suggest-button"
@@ -247,7 +244,9 @@ function App() {
             selectedLocation={selectedLocation}
             onLocationClick={handleLocationClick}
             onMapClick={handleMapClick}
-            cityCenter={cityConfig[selectedCity].center}
+            onMapBoundsChange={handleMapBoundsChange}
+            defaultCenter={defaultCenter}
+            defaultZoom={defaultZoom}
             isSelectingOnMap={isSelectingOnMap}
             clickedCoordinates={clickedCoordinates}
             isProcessingClick={isProcessingClick}
@@ -260,7 +259,6 @@ function App() {
         isOpen={isSubmissionFormOpen}
         onClose={handleCloseForm}
         clickedCoordinates={clickedCoordinates}
-        selectedCity={selectedCity}
         locationData={locationData}
       />
     </div>

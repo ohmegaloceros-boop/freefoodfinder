@@ -15,7 +15,9 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const allLocationData = require('./data/locations.json');
+const allLocations = require('./data/all-locations.json');
+
+console.log('Loaded locations:', allLocations.length);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,34 +34,39 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 
 /**
  * GET /api/locations
- * Fetch all locations for a specific city, optionally filtered by type
+ * Fetch all locations, optionally filtered by type or bounding box
  * Query params:
- *   - city: 'denver' | 'seattle' (default: 'denver')
  *   - type: 'foodbank' | 'community_fridge' | 'food_box' (optional)
+ *   - bounds: 'north,south,east,west' (optional) - filter by viewport
  */
 app.get('/api/locations', (req, res) => {
-  const { type, city = 'denver' } = req.query;
+  const { type, bounds } = req.query;
   
-  const locationData = allLocationData[city.toLowerCase()] || [];
+  let locations = [...allLocations];
   
+  // Filter by type if provided
   if (type) {
-    const filtered = locationData.filter(location => location.type === type);
-    return res.json(filtered);
+    locations = locations.filter(location => location.type === type);
   }
   
-  res.json(locationData);
+  // Filter by viewport bounds if provided
+  if (bounds) {
+    const [north, south, east, west] = bounds.split(',').map(Number);
+    locations = locations.filter(location => {
+      const { lat, lng } = location.coordinates;
+      return lat <= north && lat >= south && lng <= east && lng >= west;
+    });
+  }
+
+  res.json(locations);
 });
 
 /**
  * GET /api/locations/:id
- * Fetch a single location by ID
- * Query params:
- *   - city: 'denver' | 'seattle' (default: 'denver')
+ * Fetch a single location by ID (uses string IDs like 'denver-1', 'seattle-5')
  */
 app.get('/api/locations/:id', (req, res) => {
-  const { city = 'denver' } = req.query;
-  const locationData = allLocationData[city.toLowerCase()] || [];
-  const location = locationData.find(loc => loc.id === parseInt(req.params.id));
+  const location = allLocations.find(loc => loc.id === req.params.id);
   
   if (!location) {
     return res.status(404).json({ message: 'Location not found' });

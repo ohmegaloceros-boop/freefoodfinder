@@ -62,17 +62,16 @@ const icons = {
 // ========== MAP CONTROL COMPONENTS ==========
 
 /**
- * MapController - Handles map centering and zoom
+ * MapController - Handles map zoom to selected location and tracks viewport bounds
  * 
  * Responsibilities:
  * - Flies to selected location when user clicks marker/list item
- * - Flies to new city center when user changes city dropdown
- * - Prevents unnecessary re-centering on unrelated re-renders
+ * - Tracks map bounds and reports changes to parent component
  */
-function MapController({ selectedLocation, cityCenter }) {
+function MapController({ selectedLocation, onMapBoundsChange }) {
   const map = useMap();
-  const prevCityCenter = React.useRef(cityCenter);
   
+  // Fly to selected location
   useEffect(() => {
     if (selectedLocation) {
       map.flyTo(
@@ -83,15 +82,28 @@ function MapController({ selectedLocation, cityCenter }) {
     }
   }, [selectedLocation, map]);
 
+  // Track viewport bounds changes
   useEffect(() => {
-    // Only fly to city if the city center actually changed (not just a re-render)
-    const prev = prevCityCenter.current;
-    if (cityCenter && prev && 
-        (prev[0] !== cityCenter[0] || prev[1] !== cityCenter[1])) {
-      map.flyTo(cityCenter, 12, { duration: 1.5 });
-    }
-    prevCityCenter.current = cityCenter;
-  }, [cityCenter, map]);
+    const updateBounds = () => {
+      const bounds = map.getBounds();
+      if (onMapBoundsChange) {
+        onMapBoundsChange({
+          north: bounds.getNorth(),
+          south: bounds.getSouth(),
+          east: bounds.getEast(),
+          west: bounds.getWest()
+        });
+      }
+    };
+
+    // Update bounds when map moves
+    map.on('moveend', updateBounds);
+    updateBounds(); // Initial bounds
+
+    return () => {
+      map.off('moveend', updateBounds);
+    };
+  }, [map, onMapBoundsChange]);
   
   return null;
 }
@@ -125,12 +137,12 @@ function MapClickHandler({ onMapClick }) {
  * @param {Object} selectedLocation - Currently selected location (if any)
  * @param {Function} onLocationClick - Callback when marker is clicked
  * @param {Function} onMapClick - Callback when map surface is clicked
- * @param {Array} cityCenter - [lat, lng] coordinates for city center
+ * @param {Function} onMapBoundsChange - Callback when viewport changes
+ * @param {Array} defaultCenter - [lat, lng] initial map center
+ * @param {number} defaultZoom - Initial zoom level
  * @param {boolean} isSelectingOnMap - True when in "click to select" mode
  */
-function Map({ locations, selectedLocation, onLocationClick, onMapClick, cityCenter, isSelectingOnMap, clickedCoordinates, isProcessingClick, onSkipGeocoding }) {
-  const defaultCenter = cityCenter || [39.7392, -104.9903]; // Fallback to Denver
-  const defaultZoom = 12;
+function Map({ locations, selectedLocation, onLocationClick, onMapClick, onMapBoundsChange, defaultCenter, defaultZoom, isSelectingOnMap, clickedCoordinates, isProcessingClick, onSkipGeocoding }) {
 
   return (
     <>
@@ -161,7 +173,7 @@ function Map({ locations, selectedLocation, onLocationClick, onMapClick, cityCen
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         
-        <MapController selectedLocation={selectedLocation} cityCenter={cityCenter} />
+        <MapController selectedLocation={selectedLocation} onMapBoundsChange={onMapBoundsChange} />
         <MapClickHandler onMapClick={onMapClick} />
         
         {/* Temporary marker for clicked location during processing */}
