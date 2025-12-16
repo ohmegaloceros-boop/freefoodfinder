@@ -14,6 +14,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 're
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
+import './MapFix.css';
 
 // ========== LEAFLET SETUP ==========
 
