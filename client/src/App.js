@@ -47,9 +47,46 @@ function App() {
   // Mobile UI state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Hamburger menu toggle
 
-  // Default map center (centered on USA)
-  const defaultCenter = [39.8283, -98.5795]; // Geographic center of USA
-  const defaultZoom = 4;
+  // Map center state
+  const [mapCenter, setMapCenter] = useState([39.8283, -98.5795]); // Default: Geographic center of USA
+  const [mapZoom, setMapZoom] = useState(4); // Default zoom level
+  const [userLocation, setUserLocation] = useState(null); // User's geolocation
+  const [locationPermission, setLocationPermission] = useState('prompt'); // 'prompt', 'granted', 'denied'
+
+  // ========== GEOLOCATION ==========
+  
+  /**
+   * Get user's location on mount and center map
+   * Falls back to default USA center if permission denied or unavailable
+   */
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const userPos = [latitude, longitude];
+          setUserLocation(userPos);
+          setMapCenter(userPos);
+          setMapZoom(11); // Zoom in closer when we have user location
+          setLocationPermission('granted');
+          console.log('User location detected:', userPos);
+        },
+        (error) => {
+          console.log('Geolocation error:', error.message);
+          setLocationPermission('denied');
+          // Keep default center and zoom
+        },
+        {
+          enableHighAccuracy: false,
+          timeout: 5000,
+          maximumAge: 0
+        }
+      );
+    } else {
+      console.log('Geolocation not supported');
+      setLocationPermission('denied');
+    }
+  }, []);
 
   // ========== DATA FETCHING ==========
   
@@ -245,12 +282,13 @@ function App() {
             onLocationClick={handleLocationClick}
             onMapClick={handleMapClick}
             onMapBoundsChange={handleMapBoundsChange}
-            defaultCenter={defaultCenter}
-            defaultZoom={defaultZoom}
+            defaultCenter={mapCenter}
+            defaultZoom={mapZoom}
             isSelectingOnMap={isSelectingOnMap}
             clickedCoordinates={clickedCoordinates}
             isProcessingClick={isProcessingClick}
             onSkipGeocoding={handleSkipGeocoding}
+            userLocation={userLocation}
           />
         </main>
       </div>

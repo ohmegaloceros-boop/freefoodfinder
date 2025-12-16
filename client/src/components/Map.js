@@ -52,11 +52,13 @@ const createCustomIcon = (color) => {
  * - Food Banks: Dark green (#2e7d32)
  * - Community Fridges: Light green (#66bb6a)  
  * - Food Boxes: Yellow (#fdd835)
+ * - User Location: Blue (#2196f3)
  */
 const icons = {
   foodbank: createCustomIcon('#2e7d32'),
   community_fridge: createCustomIcon('#66bb6a'),
-  food_box: createCustomIcon('#fdd835')
+  food_box: createCustomIcon('#fdd835'),
+  user: createCustomIcon('#2196f3')
 };
 
 // ========== MAP CONTROL COMPONENTS ==========
@@ -141,8 +143,9 @@ function MapClickHandler({ onMapClick }) {
  * @param {Array} defaultCenter - [lat, lng] initial map center
  * @param {number} defaultZoom - Initial zoom level
  * @param {boolean} isSelectingOnMap - True when in "click to select" mode
+ * @param {Array} userLocation - [lat, lng] of user's geolocation if available
  */
-function Map({ locations, selectedLocation, onLocationClick, onMapClick, onMapBoundsChange, defaultCenter, defaultZoom, isSelectingOnMap, clickedCoordinates, isProcessingClick, onSkipGeocoding }) {
+function Map({ locations, selectedLocation, onLocationClick, onMapClick, onMapBoundsChange, defaultCenter, defaultZoom, isSelectingOnMap, clickedCoordinates, isProcessingClick, onSkipGeocoding, userLocation }) {
 
   return (
     <>
@@ -175,6 +178,21 @@ function Map({ locations, selectedLocation, onLocationClick, onMapClick, onMapBo
         
         <MapController selectedLocation={selectedLocation} onMapBoundsChange={onMapBoundsChange} />
         <MapClickHandler onMapClick={onMapClick} />
+        
+        {/* User's current location marker */}
+        {userLocation && (
+          <Marker
+            position={userLocation}
+            icon={icons.user}
+          >
+            <Popup>
+              <div className="popup-content">
+                <h3>📍 Your Location</h3>
+                <p>You are here</p>
+              </div>
+            </Popup>
+          </Marker>
+        )}
         
         {/* Temporary marker for clicked location during processing */}
         {clickedCoordinates && isProcessingClick && (
