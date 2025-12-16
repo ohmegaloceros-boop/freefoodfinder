@@ -66,7 +66,7 @@ function App() {
           const userPos = [latitude, longitude];
           setUserLocation(userPos);
           setMapCenter(userPos);
-          setMapZoom(11); // Zoom in closer when we have user location
+          setMapZoom(10); // Zoom level 10 shows approximately 10-mile radius
           console.log('User location detected:', userPos);
         },
         (error) => {
