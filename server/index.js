@@ -133,12 +133,6 @@ app.post('/api/submissions', (req, res) => {
       submissions = []; // Start fresh if file is corrupted
     }
   }
-      submissions = JSON.parse(data);
-    } catch (error) {
-      console.error('Error reading submissions file:', error);
-      submissions = []; // Start fresh if file is corrupted
-    }
-  }
 
   // Add new submission to array
   submissions.push(submission);
