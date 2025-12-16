@@ -1,0 +1,159 @@
+.location-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.location-count {
+  padding: 1rem 1.5rem;
+  background: white;
+  border-bottom: 1px solid #dee2e6;
+  font-weight: 600;
+  color: #43a047;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.location-count:hover {
+  background: #f1f8e9;
+}
+
+.location-count:active {
+  background: #e8f5e9;
+}
+
+.location-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.location-item {
+  background: white;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.location-item:hover {
+  border-color: #43a047;
+  box-shadow: 0 2px 8px rgba(67, 160, 71, 0.15);
+  transform: translateY(-1px);
+}
+
+.location-item.selected {
+  border-color: #43a047;
+  background: #f1f8e9;
+  box-shadow: 0 2px 8px rgba(67, 160, 71, 0.2);
+}
+
+.location-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.location-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+.location-type {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.type-foodbank {
+  background: #a5d6a7;
+  color: #1b5e20;
+}
+
+.type-community_fridge {
+  background: #dcedc8;
+  color: #558b2f;
+}
+
+.type-food_box {
+  background: #fff9c4;
+  color: #f57f17;
+}
+
+.location-address,
+.location-hours {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.no-results {
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+}
+
+.location-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+@media (max-width: 768px) {
+  .location-list {
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .location-count {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .location-items {
+    padding: 0.5rem;
+    max-height: calc(100vh - 220px);
+  }
+
+  .location-item {
+    padding: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .location-header h3 {
+    font-size: 0.9rem;
+  }
+
+  .location-type {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+  }
+
+  .location-address,
+  .location-hours {
+    font-size: 0.8rem;
+  }
+}
+
+.location-items::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.location-items::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.location-items::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

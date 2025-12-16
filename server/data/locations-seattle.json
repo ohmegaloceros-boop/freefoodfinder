@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Ballard Community Fridge",
+    "type": "community_fridge",
+    "address": "2030 NW 56th St",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98107",
+    "coordinates": {
+      "lat": 47.6699,
+      "lng": -122.3828
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Free community fridge accessible 24/7. Take what you need, leave what you can."
+  },
+  {
+    "id": 2,
+    "name": "Capitol Hill Community Fridge",
+    "type": "community_fridge",
+    "address": "1400 E Pine St",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98122",
+    "coordinates": {
+      "lat": 47.6147,
+      "lng": -122.3141
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Community-maintained fridge with fresh and prepared foods. Open 24/7 for all."
+  },
+  {
+    "id": 3,
+    "name": "Georgetown Community Fridge",
+    "type": "community_fridge",
+    "address": "5800 Airport Way S",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98108",
+    "coordinates": {
+      "lat": 47.5493,
+      "lng": -122.3179
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Free community fridge in Georgetown. Take what you need, share what you can."
+  },
+  {
+    "id": 4,
+    "name": "University District Community Fridge",
+    "type": "community_fridge",
+    "address": "4534 University Way NE",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98105",
+    "coordinates": {
+      "lat": 47.6614,
+      "lng": -122.3128
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Community fridge serving the U-District. Accessible 24/7 for all community members."
+  },
+  {
+    "id": 5,
+    "name": "Northwest Harvest - Sodo",
+    "type": "foodbank",
+    "address": "1900 4th Ave S",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98134",
+    "coordinates": {
+      "lat": 47.5827,
+      "lng": -122.3324
+    },
+    "hours": "Mon-Fri: 9am-4pm",
+    "phone": "(206) 923-3840",
+    "description": "Washington's leading hunger relief agency. Provides groceries and fresh produce to families in need."
+  },
+  {
+    "id": 6,
+    "name": "FamilyWorks Food Bank",
+    "type": "foodbank",
+    "address": "4649 Sunnyside Ave N",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98103",
+    "coordinates": {
+      "lat": 47.6648,
+      "lng": -122.3320
+    },
+    "hours": "Mon, Wed, Fri: 10am-3pm, Tue, Thu: 4pm-7pm",
+    "phone": "(206) 694-6727",
+    "description": "Provides emergency food, clothing, and support services. Serving Wallingford and surrounding neighborhoods."
+  },
+  {
+    "id": 7,
+    "name": "West Seattle Food Bank",
+    "type": "foodbank",
+    "address": "3419 SW Morgan St",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98126",
+    "coordinates": {
+      "lat": 47.5638,
+      "lng": -122.3826
+    },
+    "hours": "Tue-Thu: 1pm-5pm, Sat: 10am-2pm",
+    "phone": "(206) 932-9023",
+    "description": "Community-based food bank serving West Seattle families. No ID or income verification required."
+  },
+  {
+    "id": 8,
+    "name": "University District Food Bank",
+    "type": "foodbank",
+    "address": "4731 15th Ave NE",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98105",
+    "coordinates": {
+      "lat": 47.6648,
+      "lng": -122.3116
+    },
+    "hours": "Mon-Fri: 11am-6pm",
+    "phone": "(206) 523-7060",
+    "description": "Emergency food assistance for students and community members. Fresh produce and culturally diverse foods."
+  },
+  {
+    "id": 9,
+    "name": "Pike Place Market Blessing Box",
+    "type": "food_box",
+    "address": "Near Pike Place Market",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98101",
+    "coordinates": {
+      "lat": 47.6097,
+      "lng": -122.3425
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Community food box with non-perishable items. Located near Pike Place Market."
+  },
+  {
+    "id": 10,
+    "name": "Greenwood Blessing Box",
+    "type": "food_box",
+    "address": "N 85th St & Greenwood Ave N",
+    "city": "Seattle",
+    "state": "WA",
+    "zipCode": "98103",
+    "coordinates": {
+      "lat": 47.6893,
+      "lng": -122.3542
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Free community food box. Take what you need, give what you can."
+  }
+]

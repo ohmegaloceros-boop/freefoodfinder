@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Fort Greene Bar Community Fridge",
+    "type": "community_fridge",
+    "address": "321 E 45th Ave",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80216",
+    "coordinates": {
+      "lat": 39.7796,
+      "lng": -104.9617
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Community fridge open to the public 24/7. Take what you need, leave what you can. Part of Denver Community Fridges."
+  },
+  {
+    "id": 2,
+    "name": "Denver Dream Center Community Fridge",
+    "type": "community_fridge",
+    "address": "2758 Welton St",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80205",
+    "coordinates": {
+      "lat": 39.7565,
+      "lng": -104.9758
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Free community fridge accessible anytime. Stocked with fresh and prepared foods. Part of Denver Community Fridges network."
+  },
+  {
+    "id": 3,
+    "name": "Re:Vision Community Fridge",
+    "type": "community_fridge",
+    "address": "3800 Morrison Rd",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80219",
+    "coordinates": {
+      "lat": 39.7107,
+      "lng": -105.0334
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Community-maintained fridge open 24/7. Take what you need, share what you can. Part of Denver Community Fridges."
+  },
+  {
+    "id": 4,
+    "name": "Seventh Circle Music Collective Fridge",
+    "type": "community_fridge",
+    "address": "2935 W 7th Ave",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80204",
+    "coordinates": {
+      "lat": 39.7285,
+      "lng": -105.0208
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Free community fridge accessible 24/7. Fresh and prepared foods available. Part of Denver Community Fridges."
+  },
+  {
+    "id": 5,
+    "name": "Food Bank of the Rockies",
+    "type": "foodbank",
+    "address": "10700 E 45th Ave",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80239",
+    "coordinates": {
+      "lat": 39.7797,
+      "lng": -104.8686
+    },
+    "hours": "Mon-Fri: 8am-4pm",
+    "phone": "(303) 371-9250",
+    "description": "Colorado's largest hunger-relief organization. Provides food assistance and nutrition education programs."
+  },
+  {
+    "id": 6,
+    "name": "Metro Caring",
+    "type": "foodbank",
+    "address": "1100 E 18th Ave",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80218",
+    "coordinates": {
+      "lat": 39.7444,
+      "lng": -104.9733
+    },
+    "hours": "Mon, Wed, Fri: 10am-1pm",
+    "phone": "(303) 860-7200",
+    "description": "Emergency food, clothing, and financial assistance for Denver residents. No appointment necessary."
+  },
+  {
+    "id": 7,
+    "name": "Denver Blessing Box - City Park",
+    "type": "food_box",
+    "address": "E 17th Ave & York St",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80206",
+    "coordinates": {
+      "lat": 39.7431,
+      "lng": -104.9621
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Community blessing box with non-perishable food items. Take what you need, give what you can."
+  },
+  {
+    "id": 8,
+    "name": "Father Woody's Haven of Hope",
+    "type": "foodbank",
+    "address": "2323 Curtis St",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80205",
+    "coordinates": {
+      "lat": 39.7541,
+      "lng": -104.9821
+    },
+    "hours": "Mon-Fri: 8am-4pm, Sat: 9am-2pm",
+    "phone": "(303) 297-1276",
+    "description": "Serves meals and provides groceries to individuals and families experiencing homelessness or food insecurity."
+  },
+  {
+    "id": 9,
+    "name": "Struggle of Love Foundation",
+    "type": "foodbank",
+    "address": "1306 N Emerson St",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80218",
+    "coordinates": {
+      "lat": 39.7372,
+      "lng": -104.9646
+    },
+    "hours": "Mon-Fri: 10am-2pm",
+    "phone": "(303) 860-2288",
+    "description": "Provides food, clothing, and supportive services to neighbors in need. Walk-ins welcome."
+  },
+  {
+    "id": 10,
+    "name": "Community Blessing Box - Sloan's Lake",
+    "type": "food_box",
+    "address": "W 26th Ave & Sheridan Blvd",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80214",
+    "coordinates": {
+      "lat": 39.7521,
+      "lng": -105.0524
+    },
+    "hours": "24/7 Access",
+    "phone": null,
+    "description": "Free community food box with non-perishable items. Always open, no questions asked."
+  }
+]
