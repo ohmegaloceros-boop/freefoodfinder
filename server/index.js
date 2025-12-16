@@ -103,6 +103,12 @@ app.post('/api/submissions', (req, res) => {
   res.status(201).json({ message: 'Submission received successfully', id: submissions.length });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Only start server if not in Vercel serverless environment
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
