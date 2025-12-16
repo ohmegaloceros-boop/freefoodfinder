@@ -2,13 +2,18 @@
  * FreeFoodFinder - Backend API Server
  * 
  * Provides REST API endpoints for:
- * - Fetching location data by city
- * - Filtering locations by type
+ * - Fetching location data (national dataset)
+ * - Filtering locations by type and viewport bounds
  * - Accepting user-submitted location suggestions
  * 
- * Data stored in JSON files:
- * - locations.json: Approved locations organized by city
- * - submissions.json: Pending user submissions awaiting review
+ * Data Storage:
+ * - all-locations.json: Approved locations (899+ nationwide)
+ * - submissions.json: Pending user submissions awaiting admin review
+ * 
+ * Tech Stack:
+ * - Express.js for REST API
+ * - CORS enabled for React frontend
+ * - JSON file-based data storage
  */
 
 const express = require('express');
@@ -25,7 +30,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors()); // Enable Cross-Origin requests from React frontend
 app.use(express.json()); // Parse JSON request bodies
 
-// Serve static files from React build
+// Serve static files from React build (production)
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 // ========== API ROUTES ==========
@@ -33,9 +38,15 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 /**
  * GET /api/locations
  * Fetch all locations, optionally filtered by type or bounding box
- * Query params:
+ * 
+ * Query Parameters:
  *   - type: 'foodbank' | 'community_fridge' | 'food_box' (optional)
+ *     Example: /api/locations?type=foodbank
+ * 
  *   - bounds: 'north,south,east,west' (optional) - filter by viewport
+ *     Example: /api/locations?bounds=40.0,-105.0,39.5,-104.5
+ * 
+ * Returns: Array of location objects with coordinates, name, address, etc.
  */
 app.get('/api/locations', (req, res) => {
   const { type, bounds } = req.query;
@@ -47,7 +58,7 @@ app.get('/api/locations', (req, res) => {
     locations = locations.filter(location => location.type === type);
   }
   
-  // Filter by viewport bounds if provided
+  // Filter by viewport bounds if provided (performance optimization)
   if (bounds) {
     const [north, south, east, west] = bounds.split(',').map(Number);
     locations = locations.filter(location => {
@@ -61,7 +72,12 @@ app.get('/api/locations', (req, res) => {
 
 /**
  * GET /api/locations/:id
- * Fetch a single location by ID (uses string IDs like 'denver-1', 'seattle-5')
+ * Fetch a single location by ID
+ * 
+ * Path Parameters:
+ *   - id: Location ID (e.g., 'denver-1', 'seattle-5', 'natl-042')
+ * 
+ * Returns: Location object or 404 if not found
  */
 app.get('/api/locations/:id', (req, res) => {
   const location = allLocations.find(loc => loc.id === req.params.id);
@@ -77,51 +93,91 @@ app.get('/api/locations/:id', (req, res) => {
  * POST /api/submissions
  * Accept new location suggestions from users
  * 
- * Request body should include:
- *   - name, type, address, city, state, zipCode
- *   - coordinates: {lat, lng}
- *   - hours, phone, description (optional)
- *   - submitterEmail (optional)
+ * Request Body (JSON):
+ *   Required:
+ *     - name: string - Location name
+ *     - type: 'foodbank' | 'community_fridge' | 'food_box'
+ *     - city: string
+ *     - state: string (2-letter code)
+ *     - zipCode: string (5 digits)
+ *     - coordinates: {lat: number, lng: number}
+ *   
+ *   Optional:
+ *     - address: string
+ *     - hours: string
+ *     - phone: string
+ *     - description: string
+ *     - submitterEmail: string
  * 
  * Submissions are saved with 'pending' status for admin review
+ * Returns: Success message with submission ID
  */
 app.post('/api/submissions', (req, res) => {
+  // Add metadata to submission
   const submission = {
     ...req.body,
     submittedAt: new Date().toISOString(),
-    status: 'pending'
+    status: 'pending' // Admin will review and approve/reject
   };
 
   const submissionsPath = path.join(__dirname, 'data', 'submissions.json');
   
-  // Read existing submissions or create empty array
+  // Read existing submissions or initialize empty array
   let submissions = [];
   if (fs.existsSync(submissionsPath)) {
-    const data = fs.readFileSync(submissionsPath, 'utf8');
-    submissions = JSON.parse(data);
+    try {
+      const data = fs.readFileSync(submissionsPath, 'utf8');
+      submissions = JSON.parse(data);
+    } catch (error) {
+      console.error('Error reading submissions file:', error);
+      submissions = []; // Start fresh if file is corrupted
+    }
+  }
+      submissions = JSON.parse(data);
+    } catch (error) {
+      console.error('Error reading submissions file:', error);
+      submissions = []; // Start fresh if file is corrupted
+    }
   }
 
-  // Add new submission
+  // Add new submission to array
   submissions.push(submission);
 
-  // Save to file
-  fs.writeFileSync(submissionsPath, JSON.stringify(submissions, null, 2));
-
-  console.log('New submission received:', submission.name);
-  res.status(201).json({ message: 'Submission received successfully', id: submissions.length });
+  // Save updated submissions to file
+  try {
+    fs.writeFileSync(submissionsPath, JSON.stringify(submissions, null, 2));
+    console.log('✓ New submission received:', submission.name, '-', submission.city, submission.state);
+    res.status(201).json({ 
+      message: 'Submission received successfully', 
+      id: submissions.length 
+    });
+  } catch (error) {
+    console.error('Error saving submission:', error);
+    res.status(500).json({ message: 'Error saving submission' });
+  }
 });
 
-// Serve React app for all other routes
+// ========== FALLBACK ROUTE ==========
+
+/**
+ * Serve React app for all other routes (SPA routing)
+ * Must be last route definition
+ */
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
-// Only start server if not in Vercel serverless environment
+// ========== SERVER STARTUP ==========
+
+/**
+ * Start Express server (skip if running in serverless environment like Vercel)
+ */
 if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`🚀 FreeFoodFinder API server running on port ${PORT}`);
+    console.log(`📍 Serving ${allLocations.length} locations across the nation`);
   });
 }
 
-// Export for Vercel
+// Export app for serverless deployment (Vercel, AWS Lambda, etc.)
 module.exports = app;

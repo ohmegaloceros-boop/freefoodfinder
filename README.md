@@ -1,22 +1,60 @@
-# 🍎 FoodFinder
+# 🍎 FreeFoodFinder
 
-A web application to help users find free food resources in their community, including food banks, community fridges, and food boxes.
+A nationwide web application to help users find free food resources including food banks, community fridges, and food boxes.
 
-## Features
+## ✨ Features
 
-- **Interactive Map**: Browse food resources on an easy-to-use map powered by Leaflet/OpenStreetMap
-- **Smart Filtering**: Filter locations by type (food banks, community fridges, food boxes)
-- **Location Details**: View detailed information including hours, addresses, and descriptions
-- **Responsive Design**: Works on desktop and mobile devices
+- **📍 Automatic Geolocation**: Map centers on your location with optimal 10-mile radius view
+- **🗺️ Interactive Map**: Browse 899+ food resources across 47 states using Leaflet/OpenStreetMap
+- **🔍 Smart Filtering**: Toggle visibility by type (food banks, community fridges, food boxes)
+- **📱 Responsive Design**: Slide-out sidebar on mobile, full layout on desktop
+- **➕ Crowdsourced Data**: Users can suggest new locations via map clicks
+- **🎯 Viewport Filtering**: Only shows locations in current map view for better performance
+- **🌐 Reverse Geocoding**: Auto-fills addresses when users click map to suggest locations
 
-## Technology Stack
+## 🏗️ Architecture
+
+### Frontend (`/client`)
+- **Framework**: React 18.2.0
+- **Map Library**: React-Leaflet 4.2.1 + Leaflet 1.9.4
+- **Routing**: React Router (SPA)
+- **Styling**: Custom CSS with mobile-first approach
+
+### Backend (`/server`)
+- **Runtime**: Node.js + Express.js
+- **Data Storage**: JSON files (899+ locations in `all-locations.json`)
+- **API**: RESTful endpoints for locations and user submissions
+- **Deployment**: Render.com (auto-deploys from `viewport-filtering` branch)
+
+### Key Components
+
+```
+client/src/
+├── App.js                    # Main app component, state management
+├── components/
+│   ├── Map.js               # Leaflet map with geolocation & zoom control
+│   ├── FilterPanel.js       # Type filters (food banks, fridges, boxes)
+│   ├── LocationList.js      # Scrollable list of visible locations
+│   └── SubmissionForm.js    # Modal form for user suggestions
+└── App.css                  # Global styles
+
+server/
+├── index.js                 # Express API server
+└── data/
+    ├── all-locations.json   # 899+ approved locations
+    └── submissions.json     # Pending user submissions
+```
+
+## 🚀 Technology Stack
 
 - **Frontend**: React 18, React-Leaflet for maps
 - **Backend**: Node.js with Express
 - **Maps**: Leaflet with OpenStreetMap (free, no API key required)
-- **Data Storage**: JSON files (can be upgraded to a database)
+- **Geocoding**: Nominatim API (OpenStreetMap's reverse geocoding)
+- **Data Storage**: JSON files (easily upgradeable to database)
+- **Deployment**: Render.com (production), GitHub (version control)
 
-## Getting Started
+## 💻 Getting Started
 
 ### Prerequisites
 
@@ -25,7 +63,7 @@ A web application to help users find free food resources in their community, inc
 
 ### Installation
 
-1. Install all dependencies (root, client, and server):
+1. Clone the repository and install all dependencies:
 ```bash
 npm run install-all
 ```
