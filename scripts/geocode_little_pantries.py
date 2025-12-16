@@ -26,9 +26,9 @@ def load_pantry_names(filename='little-pantry-full.json'):
     with open(filepath, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def geocode_location(name: str) -> Dict:
+def geocode_location(name: str, retry_count: int = 3) -> Dict:
     """
-    Geocode a location name using Nominatim
+    Geocode a location name using Nominatim with retry logic
     Returns dict with lat, lng, and formatted address
     """
     base_url = "https://nominatim.openstreetmap.org/search"
@@ -59,30 +59,39 @@ def geocode_location(name: str) -> Dict:
         'User-Agent': 'FreeFoodFinder/1.0 (nonprofit food assistance locator)'
     }
     
-    try:
-        response = requests.get(base_url, params=params, headers=headers, timeout=10)
-        response.raise_for_status()
-        
-        results = response.json()
-        
-        if results and len(results) > 0:
-            result = results[0]
-            address_parts = result.get('address', {})
+    for attempt in range(retry_count):
+        try:
+            response = requests.get(base_url, params=params, headers=headers, timeout=15)
+            response.raise_for_status()
             
-            return {
-                'success': True,
-                'lat': float(result['lat']),
-                'lng': float(result['lon']),
-                'city': address_parts.get('city') or address_parts.get('town') or address_parts.get('village', ''),
-                'state': address_parts.get('state', ''),
-                'country': address_parts.get('country', ''),
-                'formatted_address': result.get('display_name', '')
-            }
-        else:
-            return {'success': False, 'error': 'No results found'}
+            results = response.json()
             
-    except Exception as e:
-        return {'success': False, 'error': str(e)}
+            if results and len(results) > 0:
+                result = results[0]
+                address_parts = result.get('address', {})
+                
+                return {
+                    'success': True,
+                    'lat': float(result['lat']),
+                    'lng': float(result['lon']),
+                    'city': address_parts.get('city') or address_parts.get('town') or address_parts.get('village', ''),
+                    'state': address_parts.get('state', ''),
+                    'country': address_parts.get('country', ''),
+                    'formatted_address': result.get('display_name', '')
+                }
+            else:
+                return {'success': False, 'error': 'No results found'}
+                
+        except requests.exceptions.Timeout:
+            if attempt < retry_count - 1:
+                time.sleep(2)  # Wait before retry
+                continue
+            return {'success': False, 'error': 'Timeout after retries'}
+        except Exception as e:
+            if attempt < retry_count - 1:
+                time.sleep(2)
+                continue
+            return {'success': False, 'error': str(e)}
 
 def geocode_batch(locations: List[Dict], batch_size: int = 100, delay: float = 1.1):
     """
@@ -162,13 +171,33 @@ def main():
     print("=" * 70)
     print("Little Free Pantry Geocoding Script")
     print("=" * 70)
-    print("\nThis will geocode all 3,941 pantry names to get coordinates")
-    print("\nWARNING: This will take ~66 minutes due to rate limits!")
+    
+    # Check for command line argument for sample size
+    import sys
+    sample_size = None
+    if len(sys.argv) > 1:
+        try:
+            sample_size = int(sys.argv[1])
+            print(f"\nSample mode: Geocoding first {sample_size} pantries")
+        except ValueError:
+            print(f"\nInvalid sample size: {sys.argv[1]}")
+            return
+    else:
+        print("\nThis will geocode all 3,941 pantry names to get coordinates")
+        print("\nWARNING: This will take ~66 minutes due to rate limits!")
+    
     print("You can stop at any time - progress is saved every 100 locations")
     print("=" * 70)
     
-    # Ask for confirmation
-    response = input("\nStart geocoding? (yes/no): ").strip().lower()
+    # Ask for confirmation (skip if sample mode for automation)
+    if sample_size and sample_size <= 100:
+        print(f"\n[Auto-starting sample geocoding of {sample_size} locations...]")
+        response = 'yes'
+    elif sample_size:
+        response = input(f"\nGeocode first {sample_size} pantries? (yes/no): ").strip().lower()
+    else:
+        response = input("\nStart geocoding ALL pantries? (yes/no): ").strip().lower()
+    
     if response != 'yes':
         print("Cancelled.")
         return
@@ -177,6 +206,11 @@ def main():
     print("\nLoading pantry names...")
     locations = load_pantry_names()
     print(f"Loaded {len(locations)} locations")
+    
+    # Limit to sample if specified
+    if sample_size:
+        locations = locations[:sample_size]
+        print(f"Processing sample of {len(locations)} locations")
     
     # Start geocoding
     start_time = time.time()

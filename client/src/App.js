@@ -51,7 +51,6 @@ function App() {
   const [mapCenter, setMapCenter] = useState([39.8283, -98.5795]); // Default: Geographic center of USA
   const [mapZoom, setMapZoom] = useState(4); // Default zoom level
   const [userLocation, setUserLocation] = useState(null); // User's geolocation
-  const [locationPermission, setLocationPermission] = useState('prompt'); // 'prompt', 'granted', 'denied'
 
   // ========== GEOLOCATION ==========
   
@@ -68,12 +67,10 @@ function App() {
           setUserLocation(userPos);
           setMapCenter(userPos);
           setMapZoom(11); // Zoom in closer when we have user location
-          setLocationPermission('granted');
           console.log('User location detected:', userPos);
         },
         (error) => {
           console.log('Geolocation error:', error.message);
-          setLocationPermission('denied');
           // Keep default center and zoom
         },
         {
@@ -84,7 +81,6 @@ function App() {
       );
     } else {
       console.log('Geolocation not supported');
-      setLocationPermission('denied');
     }
   }, []);
 
