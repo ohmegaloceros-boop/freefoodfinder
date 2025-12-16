@@ -19,6 +19,7 @@ import Map from './components/Map';
 import FilterPanel from './components/FilterPanel';
 import LocationList from './components/LocationList';
 import SubmissionForm from './components/SubmissionForm';
+import SearchBar from './components/SearchBar';
 import './App.css';
 
 function App() {
@@ -220,6 +221,16 @@ function App() {
     setMapBounds(bounds);
   }, []);
 
+  /**
+   * Handle search - fly map to searched location
+   * @param {Object} location - {lat, lng, displayName}
+   */
+  const handleSearch = (location) => {
+    setMapCenter([location.lat, location.lng]);
+    setMapZoom(13); // Zoom in to city level
+    console.log('Flying to:', location.displayName);
+  };
+
   // ========== RENDER ==========
   
   return (
@@ -249,6 +260,9 @@ function App() {
         <span></span>
         <span></span>
       </button>
+      
+      {/* Search bar for finding cities/locations */}
+      <SearchBar onSearch={handleSearch} isSidebarOpen={isSidebarOpen} />
       
       <div className="app-container">
         <aside className={`sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`}>
