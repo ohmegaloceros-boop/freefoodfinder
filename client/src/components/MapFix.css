@@ -1,5 +1,5 @@
 /* Fix zoom controls position below fixed header */
 .leaflet-top {
   position: fixed !important;
-  top: 90px !important;
+  top: 110px !important;
 }
