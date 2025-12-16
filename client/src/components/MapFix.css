@@ -3,3 +3,10 @@
   position: fixed !important;
   top: 110px !important;
 }
+
+/* Ensure zoom controls stay below header on mobile */
+@media (max-width: 768px) {
+  .leaflet-top {
+    top: 110px !important;
+  }
+}
