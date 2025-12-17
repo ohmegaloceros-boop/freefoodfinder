@@ -89,13 +89,23 @@ function SearchBar({ onSearch, isSidebarOpen }) {
             className="search-input"
             autoFocus
           />
-          <button 
-            type="submit" 
-            className="search-submit-button"
-            disabled={isSearching || !searchQuery.trim()}
-          >
-            {isSearching ? '...' : 'Go'}
-          </button>
+          {searchQuery.trim() ? (
+            <button 
+              type="submit" 
+              className="search-submit-button"
+              disabled={isSearching}
+            >
+              {isSearching ? '...' : 'Go'}
+            </button>
+          ) : (
+            <button 
+              type="button"
+              className="search-close-button"
+              onClick={handleToggle}
+            >
+              ✕
+            </button>
+          )}
           {error && <div className="search-error">{error}</div>}
         </form>
       )}

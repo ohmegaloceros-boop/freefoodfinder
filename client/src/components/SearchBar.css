@@ -98,6 +98,25 @@
   cursor: not-allowed;
 }
 
+.search-close-button {
+  padding: 0.5rem 1rem;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  line-height: 1;
+  min-width: 48px;
+}
+
+.search-close-button:hover {
+  background: #da190b;
+}
+
 .search-error {
   position: absolute;
   top: 100%;
