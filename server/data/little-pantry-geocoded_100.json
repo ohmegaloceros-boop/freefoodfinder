@@ -1,0 +1,212 @@
+[
+  {
+    "name": "HOME PAGE",
+    "type": "food_box",
+    "id": "little-pantry-2",
+    "address": "Home Page, Town of Queensbury, Warren County, New York, 12804, United States",
+    "city": "Town of Queensbury",
+    "state": "New York",
+    "coordinates": {
+      "lat": 43.3630805,
+      "lng": -73.7107889
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "here",
+    "type": "food_box",
+    "id": "little-pantry-3",
+    "address": "Here, 26, Bushwick Avenue, Brooklyn, Kings County, City of New York, New York, 11207, United States",
+    "city": "City of New York",
+    "state": "New York",
+    "coordinates": {
+      "lat": 40.7139069,
+      "lng": -73.9418565
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Alaska Junction",
+    "type": "food_box",
+    "id": "little-pantry-7",
+    "address": "Alaska Junction, West Seattle, Seattle, King County, Washington, 98116, United States",
+    "city": "Seattle",
+    "state": "Washington",
+    "coordinates": {
+      "lat": 47.5611534,
+      "lng": -122.3867396
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Gleneden Beach",
+    "type": "food_box",
+    "id": "little-pantry-10",
+    "address": "Gleneden Beach, Lincoln County, Oregon, 97388, United States",
+    "city": "",
+    "state": "Oregon",
+    "coordinates": {
+      "lat": 44.8789911,
+      "lng": -124.0346728
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "CR Pantry",
+    "type": "food_box",
+    "id": "little-pantry-25",
+    "address": "Sister BJs Pantry, Oklahoma City, Oklahoma County, Oklahoma, United States",
+    "city": "Oklahoma City",
+    "state": "Oklahoma",
+    "coordinates": {
+      "lat": 35.472469,
+      "lng": -97.5266698
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Compass Christian Church",
+    "type": "food_box",
+    "id": "little-pantry-27",
+    "address": "Compass Christian Church, Chandler, Maricopa County, Arizona, United States",
+    "city": "Chandler",
+    "state": "Arizona",
+    "coordinates": {
+      "lat": 33.278575,
+      "lng": -111.8564546
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "St.James united Church of Christ",
+    "type": "food_box",
+    "id": "little-pantry-37",
+    "address": "St. James United Church of Christ, South Ralph Street, Center City, Allentown, Lehigh County, Pennsylvania, 18102, United States",
+    "city": "Allentown",
+    "state": "Pennsylvania",
+    "coordinates": {
+      "lat": 40.5966226,
+      "lng": -75.4870978
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "First Lutheran Church",
+    "type": "food_box",
+    "id": "little-pantry-41",
+    "address": "First Lutheran Church, West Booher Lane, East Second Street Historic District, Dayton, Montgomery County, Ohio, 45402, United States",
+    "city": "Dayton",
+    "state": "Ohio",
+    "coordinates": {
+      "lat": 39.7615041,
+      "lng": -84.195629
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Community of Christ",
+    "type": "food_box",
+    "id": "little-pantry-58",
+    "address": "Community of Christ, Eugene, Lane County, Oregon, United States",
+    "city": "Eugene",
+    "state": "Oregon",
+    "coordinates": {
+      "lat": 44.078598,
+      "lng": -123.0801195
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Little Pink Free Pantry - Church St",
+    "type": "food_box",
+    "id": "little-pantry-59",
+    "address": "Church Street, Manhattan, New York County, City of New York, New York, 10013, United States",
+    "city": "City of New York",
+    "state": "New York",
+    "coordinates": {
+      "lat": 40.720299,
+      "lng": -74.0036985
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Acacia Park Lutheran Church",
+    "type": "food_box",
+    "id": "little-pantry-63",
+    "address": "Acacia Park Evangelical Lutheran Church, 4307, Oriole Avenue, Norridge, Norwood Park Township, Cook County, Illinois, 60706, United States",
+    "city": "Norridge",
+    "state": "Illinois",
+    "coordinates": {
+      "lat": 41.9582542,
+      "lng": -87.8165534
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Unitarian Universalist San Mateo",
+    "type": "food_box",
+    "id": "little-pantry-69",
+    "address": "Unitarian Universalist Fellowship of Redwood City, 2124, Brewster Avenue, Redwood City, San Mateo County, California, 94063, United States",
+    "city": "Redwood City",
+    "state": "California",
+    "coordinates": {
+      "lat": 37.4801,
+      "lng": -122.2454935
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Free Little Pantry",
+    "type": "food_box",
+    "id": "little-pantry-70",
+    "address": "Free Little Pantry, Greenwood Avenue, Windsor Terrace, Brooklyn, Kings County, City of New York, New York, 11218, United States",
+    "city": "City of New York",
+    "state": "New York",
+    "coordinates": {
+      "lat": 40.6514427,
+      "lng": -73.9754462
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  },
+  {
+    "name": "Give & Take",
+    "type": "food_box",
+    "id": "little-pantry-92",
+    "address": "Give & Take, 1, A J Gordon Court, Hamilton, Essex County, Massachusetts, 01936, United States",
+    "city": "Hamilton",
+    "state": "Massachusetts",
+    "coordinates": {
+      "lat": 42.61257,
+      "lng": -70.8420797
+    },
+    "hours": "24/7",
+    "phone": "",
+    "description": "Little Free Pantry - Take what you need, leave what you can"
+  }
+]

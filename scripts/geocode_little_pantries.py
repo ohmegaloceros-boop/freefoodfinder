@@ -189,12 +189,10 @@ def main():
     print("You can stop at any time - progress is saved every 100 locations")
     print("=" * 70)
     
-    # Ask for confirmation (skip if sample mode for automation)
-    if sample_size and sample_size <= 100:
-        print(f"\n[Auto-starting sample geocoding of {sample_size} locations...]")
+    # Auto-confirm for batch processing (skip confirmation prompt)
+    if sample_size:
+        print(f"\n[Auto-starting geocoding of {sample_size} locations...]")
         response = 'yes'
-    elif sample_size:
-        response = input(f"\nGeocode first {sample_size} pantries? (yes/no): ").strip().lower()
     else:
         response = input("\nStart geocoding ALL pantries? (yes/no): ").strip().lower()
     
