@@ -1,3 +1,7 @@
+:root {
+  --header-height: 60px;
+}
+
 .App {
   height: 100vh;
   display: flex;
@@ -14,6 +18,9 @@
   left: 0;
   right: 0;
   z-index: 1000;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
 }
 
 .header-content {
