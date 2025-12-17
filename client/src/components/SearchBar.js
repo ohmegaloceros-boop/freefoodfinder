@@ -104,39 +104,41 @@ function SearchBar({ onSearch, isSidebarOpen }) {
       
       {/* Search form - only visible when expanded */}
       {isExpanded && (
-        <form onSubmit={handleSearch} className="search-form">
-          {/* Search text input */}
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search city or address..."
-            className="search-input"
-            autoFocus
-          />
+        <>
+          <form onSubmit={handleSearch} className="search-form">
+            {/* Search text input */}
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search city or address..."
+              className="search-input"
+              autoFocus
+            />
+            
+            {/* Conditional button: green "Go" when text entered, red "X" when empty */}
+            {searchQuery.trim() ? (
+              <button 
+                type="submit" 
+                className="search-submit-button"
+                disabled={isSearching}
+              >
+                {isSearching ? '...' : 'Go'}
+              </button>
+            ) : (
+              <button 
+                type="button"
+                className="search-close-button"
+                onClick={handleToggle}
+              >
+                ✕
+              </button>
+            )}
+          </form>
           
-          {/* Conditional button: green "Go" when text entered, red "X" when empty */}
-          {searchQuery.trim() ? (
-            <button 
-              type="submit" 
-              className="search-submit-button"
-              disabled={isSearching}
-            >
-              {isSearching ? '...' : 'Go'}
-            </button>
-          ) : (
-            <button 
-              type="button"
-              className="search-close-button"
-              onClick={handleToggle}
-            >
-              ✕
-            </button>
-          )}
-          
-          {/* Error message display */}
+          {/* Error message display - outside form for proper positioning */}
           {error && <div className="search-error">{error}</div>}
-        </form>
+        </>
       )}
     </div>
   );
