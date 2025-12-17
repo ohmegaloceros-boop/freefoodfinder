@@ -77,8 +77,9 @@ function SearchBar({ onSearch, isSidebarOpen }) {
           lng: parseFloat(result.lon),
           displayName: result.display_name
         });
-        // Clear search and collapse bar on success
+        // Clear search, error, and collapse bar on success
         setSearchQuery('');
+        setError('');
         setIsExpanded(false);
       } else {
         setError('Location not found. Try a city name or address.');

@@ -61,18 +61,25 @@ function App() {
    */
   useEffect(() => {
     if ('geolocation' in navigator) {
-      console.log('Requesting user location...');
+      console.log('🌍 Requesting user location...');
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
+          const { latitude, longitude, accuracy } = position.coords;
           const userPos = [latitude, longitude];
           setUserLocation(userPos);
           setMapCenter(userPos);
           setMapZoom(12); // Zoom in closer to user's location
-          console.log('✓ User location detected:', userPos);
+          console.log(`✓ User location detected: [${latitude.toFixed(4)}, ${longitude.toFixed(4)}] ±${Math.round(accuracy)}m`);
         },
         (error) => {
-          console.warn('Geolocation error:', error.message, '- Using default center');
+          console.error('❌ Geolocation error:', {
+            code: error.code,
+            message: error.message,
+            details: error.code === 1 ? 'Permission denied' : 
+                     error.code === 2 ? 'Position unavailable' : 
+                     error.code === 3 ? 'Timeout' : 'Unknown'
+          });
+          console.log('📍 Using default center: Geographic center of USA');
           // Keep default center and zoom
         },
         {
@@ -82,7 +89,7 @@ function App() {
         }
       );
     } else {
-      console.log('Geolocation not supported in this browser');
+      console.log('❌ Geolocation not supported in this browser');
     }
   }, []);
 
