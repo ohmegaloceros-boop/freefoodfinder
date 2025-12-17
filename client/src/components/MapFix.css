@@ -4,7 +4,7 @@
   top: auto !important;
   bottom: 90px !important; /* Above search bar */
   left: auto !important;
-  right: 10px !important;
+  right: 20px !important;
 }
 
 /* Keep zoom controls below header on mobile */
