@@ -238,10 +238,7 @@ function App() {
       {/* Header with suggest button */}
       <header className="app-header">
         <div className="header-content">
-          <div className="header-title">
-            <h1>🍎 FreeFoodFinder</h1>
-            <p>Find free food resources nationwide</p>
-          </div>
+          <h1 className="header-title">🍎 FreeFoodFinder</h1>
           <button 
             className="suggest-button"
             onClick={handleStartSelecting}
