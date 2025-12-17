@@ -1,19 +1,45 @@
-/* Position zoom controls in bottom-right on desktop */
+/**
+ * MapFix.css - Leaflet Zoom Controls Positioning Override
+ * 
+ * Purpose: 
+ * Fix default Leaflet zoom control positioning to work with our fixed header
+ * and place controls appropriately for both desktop and mobile layouts.
+ * 
+ * Desktop Layout (> 768px):
+ * - Bottom-right corner, stacked above search bar
+ * - 20px from right edge (aligned with search bar)
+ * - 90px from bottom (leaves space for search bar below)
+ * 
+ * Mobile Layout (≤ 768px):
+ * - Top-left corner, below fixed header
+ * - 10px from left edge
+ * - 15px margin below header height
+ * - Does not conflict with bottom-left hamburger/search positioning
+ */
+
+/* ===== DESKTOP LAYOUT: Bottom-Right Positioning ===== */
+
 .leaflet-top {
   position: fixed !important;
-  top: auto !important;
-  bottom: 90px !important; /* Above search bar */
-  left: auto !important;
-  right: 20px !important;
+  top: auto !important; /* Override default top positioning */
+  bottom: 90px !important; /* Position above search bar (search bar at 20px + ~44px height + margin) */
+  left: auto !important; /* Override default left positioning */
+  right: 20px !important; /* Align with search bar's right position */
 }
 
-/* Keep zoom controls below header on mobile */
+/* ===== MOBILE LAYOUT: Top-Left Positioning (Below Header) ===== */
+
 @media (max-width: 768px) {
   .leaflet-top {
-    top: var(--header-height, 60px) !important;
-    bottom: auto !important;
-    left: 10px !important;
-    right: auto !important;
-    margin-top: 15px !important;
+    /* Revert to top positioning on mobile */
+    top: var(--header-height, 60px) !important; /* Position below fixed header */
+    bottom: auto !important; /* Remove bottom positioning */
+    
+    /* Revert to left positioning on mobile */
+    left: 10px !important; /* Standard left margin */
+    right: auto !important; /* Remove right positioning */
+    
+    /* Additional spacing below header */
+    margin-top: 15px !important; /* Visual separation from header */
   }
 }

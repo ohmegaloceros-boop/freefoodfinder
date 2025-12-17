@@ -3,19 +3,29 @@
  * 
  * Features:
  * - Expandable search input with magnifying glass icon trigger
- * - Desktop: positioned in bottom-right corner
- * - Mobile: positioned above hamburger menu at bottom-left
+ * - Geocoding via Nominatim API (OpenStreetMap)
+ * - Responsive positioning optimized for both desktop and mobile
  * - Animated expansion and error display
  * - Conditional button styling (green Go / red Close)
+ * 
+ * Desktop Layout (> 768px):
+ * - Bottom-right corner (20px from edges)
+ * - Vertically aligned with zoom controls
+ * - Keeps UI elements away from top header and sidebar
+ * 
+ * Mobile Layout (≤ 768px):
+ * - Bottom-left corner (above hamburger menu)
+ * - 7rem from bottom (hamburger is at 2rem)
+ * - Maintains accessibility without blocking map controls
  */
 
 /* ===== MAIN CONTAINER ===== */
 
 .search-bar {
   position: fixed;
-  bottom: 20px;
+  bottom: 20px; /* Desktop: bottom-right positioning */
   right: 20px;
-  z-index: 1001; /* Above map, below sidebar (when sidebar open) */
+  z-index: 1001; /* Above map (1000), below sidebar when open (1002) */
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -167,14 +177,21 @@
 }
 
 /* ===== MOBILE RESPONSIVE LAYOUT ===== */
+/* 
+ * Mobile Strategy:
+ * - Moves search to bottom-left to avoid conflicts with:
+ *   - Hamburger menu button (fixed at bottom-left, 2rem from bottom)
+ *   - Zoom controls (moved to top-left below header on mobile)
+ *   - Map interaction area (center remains unobstructed)
+ */
 
 @media (max-width: 768px) {
   /* Reposition to bottom-left, above hamburger menu */
   .search-bar {
-    top: auto;
+    top: auto; /* Ensure bottom positioning takes precedence */
     bottom: 7rem; /* Position above hamburger button (hamburger is at 2rem) */
     left: 1rem;
-    right: auto;
+    right: auto; /* Remove right positioning */
   }
 
   /* Smaller magnifying glass button on mobile */
