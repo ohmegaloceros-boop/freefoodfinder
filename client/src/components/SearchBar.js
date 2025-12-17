@@ -18,13 +18,23 @@ import './SearchBar.css';
  * @param {boolean} isSidebarOpen - True when sidebar is visible (hides search on mobile)
  */
 function SearchBar({ onSearch, isSidebarOpen }) {
+  // State: Is search input expanded?
   const [isExpanded, setIsExpanded] = useState(false);
+  
+  // State: User's search query text
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // State: Is search API request in progress?
   const [isSearching, setIsSearching] = useState(false);
+  
+  // State: Error message to display (empty string = no error)
   const [error, setError] = useState('');
 
   /**
    * Toggle search bar expansion
+   * - Expands to show input field when collapsed
+   * - Collapses to just magnifying glass icon when expanded
+   * - Clears any error messages
    */
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -33,7 +43,15 @@ function SearchBar({ onSearch, isSidebarOpen }) {
 
   /**
    * Handle search submission
-   * Uses Nominatim geocoding API to find location
+   * 
+   * Flow:
+   * 1. Validates query is not empty
+   * 2. Calls Nominatim geocoding API (OpenStreetMap's free geocoding service)
+   * 3. If location found: calls onSearch callback to fly map to location
+   * 4. If not found: displays error message
+   * 5. Closes search bar on success
+   * 
+   * @param {Event} e - Form submit event
    */
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -44,6 +62,8 @@ function SearchBar({ onSearch, isSidebarOpen }) {
 
     try {
       // Search using Nominatim geocoding API
+      // Free geocoding service provided by OpenStreetMap
+      // Limit=1 returns only the best match
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&limit=1`
       );
@@ -51,11 +71,13 @@ function SearchBar({ onSearch, isSidebarOpen }) {
 
       if (data && data.length > 0) {
         const result = data[0];
+        // Call parent component's onSearch callback with location data
         onSearch({
           lat: parseFloat(result.lat),
           lng: parseFloat(result.lon),
           displayName: result.display_name
         });
+        // Clear search and collapse bar on success
         setSearchQuery('');
         setIsExpanded(false);
       } else {
@@ -71,6 +93,7 @@ function SearchBar({ onSearch, isSidebarOpen }) {
 
   return (
     <div className={`search-bar ${isExpanded ? 'expanded' : ''} ${isSidebarOpen ? 'behind-sidebar' : ''}`}>
+      {/* Magnifying glass button - always visible */}
       <button 
         className="search-icon-button"
         onClick={handleToggle}
@@ -79,8 +102,10 @@ function SearchBar({ onSearch, isSidebarOpen }) {
         🔍
       </button>
       
+      {/* Search form - only visible when expanded */}
       {isExpanded && (
         <form onSubmit={handleSearch} className="search-form">
+          {/* Search text input */}
           <input
             type="text"
             value={searchQuery}
@@ -89,6 +114,8 @@ function SearchBar({ onSearch, isSidebarOpen }) {
             className="search-input"
             autoFocus
           />
+          
+          {/* Conditional button: green "Go" when text entered, red "X" when empty */}
           {searchQuery.trim() ? (
             <button 
               type="submit" 
@@ -106,6 +133,8 @@ function SearchBar({ onSearch, isSidebarOpen }) {
               ✕
             </button>
           )}
+          
+          {/* Error message display */}
           {error && <div className="search-error">{error}</div>}
         </form>
       )}

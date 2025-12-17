@@ -1,10 +1,21 @@
-/* SearchBar Component Styles */
+/**
+ * SearchBar Component Styles
+ * 
+ * Features:
+ * - Expandable search input with magnifying glass icon trigger
+ * - Desktop: positioned in top-right corner
+ * - Mobile: positioned above hamburger menu at bottom-left
+ * - Animated expansion and error display
+ * - Conditional button styling (green Go / red Close)
+ */
+
+/* ===== MAIN CONTAINER ===== */
 
 .search-bar {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1001;
+  z-index: 1001; /* Above map, below sidebar (when sidebar open) */
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -13,8 +24,10 @@
 
 /* Hide behind sidebar when sidebar is open on mobile */
 .search-bar.behind-sidebar {
-  z-index: 999;
+  z-index: 999; /* Below sidebar but above map */
 }
+
+/* ===== MAGNIFYING GLASS BUTTON ===== */
 
 .search-icon-button {
   width: 44px;
@@ -40,6 +53,8 @@
   transform: scale(0.95);
 }
 
+/* ===== SEARCH FORM (EXPANDED STATE) ===== */
+
 .search-form {
   display: flex;
   align-items: center;
@@ -48,9 +63,10 @@
   padding: 0.5rem;
   border-radius: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  animation: slideIn 0.3s ease;
+  animation: slideIn 0.3s ease; /* Smooth slide-in animation */
 }
 
+/* Animation: Slide in from right when expanding */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -61,6 +77,8 @@
     transform: translateX(0);
   }
 }
+
+/* ===== SEARCH INPUT FIELD ===== */
 
 .search-input {
   width: 200px;
@@ -73,9 +91,12 @@
 }
 
 .search-input:focus {
-  border-color: #43a047;
+  border-color: #43a047; /* Green border on focus */
 }
 
+/* ===== ACTION BUTTONS ===== */
+
+/* Green "Go" button - shown when user has typed text */
 .search-submit-button {
   padding: 0.5rem 1rem;
   background: #43a047;
@@ -98,6 +119,7 @@
   cursor: not-allowed;
 }
 
+/* Red "X" close button - shown when input field is empty */
 .search-close-button {
   padding: 0.5rem 1rem;
   background: #f44336;
@@ -117,9 +139,11 @@
   background: #da190b;
 }
 
+/* ===== ERROR DISPLAY ===== */
+
 .search-error {
   position: absolute;
-  top: 100%;
+  top: 100%; /* Position below the search form */
   right: 0;
   margin-top: 0.5rem;
   background: #d32f2f;
@@ -132,6 +156,7 @@
   animation: fadeIn 0.2s ease;
 }
 
+/* Animation: Fade in for error messages */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -141,8 +166,10 @@
   }
 }
 
-/* Mobile responsiveness */
+/* ===== MOBILE RESPONSIVE LAYOUT ===== */
+
 @media (max-width: 768px) {
+  /* Reposition to bottom-left, above hamburger menu */
   .search-bar {
     top: auto;
     bottom: 7rem; /* Position above hamburger button (hamburger is at 2rem) */
@@ -150,33 +177,41 @@
     right: auto;
   }
 
+  /* Smaller magnifying glass button on mobile */
   .search-icon-button {
     width: 40px;
     height: 40px;
     font-size: 1rem;
   }
 
+  /* Form expands to the right from button */
   .search-form {
     position: absolute;
     bottom: 0;
     left: 0;
   }
 
+  /* Narrower input field on mobile */
   .search-input {
     width: 150px;
     font-size: 0.85rem;
   }
 
+  /* Smaller action buttons on mobile */
   .search-submit-button {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
   }
 
+  /* Error wraps on mobile due to limited width */
   .search-error {
     font-size: 0.75rem;
     max-width: 200px;
     white-space: normal;
     right: auto;
+    left: 0;
+  }
+}
     left: 0;
   }
 }
