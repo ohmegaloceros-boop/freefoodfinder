@@ -3,6 +3,7 @@
   position: fixed !important;
   top: auto !important;
   bottom: 90px !important; /* Above search bar */
+  left: auto !important;
   right: 10px !important;
 }
 
@@ -11,6 +12,7 @@
   .leaflet-top {
     top: var(--header-height, 60px) !important;
     bottom: auto !important;
+    left: 10px !important;
     right: auto !important;
     margin-top: 15px !important;
   }
