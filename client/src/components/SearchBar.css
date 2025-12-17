@@ -212,9 +212,6 @@
     left: 0;
   }
 }
-    left: 0;
-  }
-}
 
 /* Extra small screens */
 @media (max-width: 480px) {
