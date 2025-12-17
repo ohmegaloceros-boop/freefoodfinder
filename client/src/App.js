@@ -61,27 +61,28 @@ function App() {
    */
   useEffect(() => {
     if ('geolocation' in navigator) {
+      console.log('Requesting user location...');
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           const userPos = [latitude, longitude];
           setUserLocation(userPos);
           setMapCenter(userPos);
-          setMapZoom(10); // Zoom level 10 shows approximately 10-mile radius
-          console.log('User location detected:', userPos);
+          setMapZoom(12); // Zoom in closer to user's location
+          console.log('✓ User location detected:', userPos);
         },
         (error) => {
-          console.log('Geolocation error:', error.message);
+          console.warn('Geolocation error:', error.message, '- Using default center');
           // Keep default center and zoom
         },
         {
-          enableHighAccuracy: false,
-          timeout: 10000, // Increased to 10 seconds
-          maximumAge: 300000 // Allow cached position up to 5 minutes old
+          enableHighAccuracy: true, // More accurate position
+          timeout: 30000, // 30 seconds - give user time to grant permission
+          maximumAge: 60000 // Allow cached position up to 1 minute old
         }
       );
     } else {
-      console.log('Geolocation not supported');
+      console.log('Geolocation not supported in this browser');
     }
   }, []);
 
