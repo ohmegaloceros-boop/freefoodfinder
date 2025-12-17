@@ -1,5 +1,5 @@
 :root {
-  --header-height: 60px;
+  --header-height: 80px;
 }
 
 .App {
@@ -11,14 +11,14 @@
 .app-header {
   background: linear-gradient(135deg, #43a047 0%, #fdd835 100%);
   color: white;
-  padding: 0.75rem 2rem;
+  padding: 1rem 2rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  height: var(--header-height);
+  min-height: var(--header-height);
   display: flex;
   align-items: center;
 }
@@ -28,11 +28,12 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  width: 100%;
 }
 
 .header-title {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -41,7 +42,7 @@
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
 }
 
@@ -94,7 +95,7 @@
   background: white;
   color: #43a047;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 2rem;
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.95rem;
