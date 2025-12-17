@@ -79,8 +79,8 @@
     padding: 0.5rem 0.75rem;
     justify-content: flex-start;
     align-items: center;
-    background: white;
-    border: 2px solid #e9ecef;
+    background: white !important;
+    border: 2px solid #e9ecef !important;
     -webkit-tap-highlight-color: rgba(67, 160, 71, 0.1);
     touch-action: manipulation;
   }
@@ -88,6 +88,11 @@
   .filter-option.active {
     background: #e8f5e9 !important;
     border-color: #43a047 !important;
+  }
+  
+  .filter-option:not(.active) {
+    background: white !important;
+    border-color: #e9ecef !important;
   }
 
   .filter-color {
