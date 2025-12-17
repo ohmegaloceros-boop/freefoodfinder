@@ -243,7 +243,7 @@ function App() {
             className="suggest-button"
             onClick={handleStartSelecting}
           >
-            {isSelectingOnMap ? '📍 Click on Map...' : 'Submit new location'}
+            {isSelectingOnMap ? '📍 Click on Map...' : 'submit new location'}
           </button>
         </div>
       </header>
