@@ -77,7 +77,8 @@ function MapController({ selectedLocation, onMapBoundsChange, center, zoom }) {
   // Update map view when center or zoom changes (e.g., geolocation)
   useEffect(() => {
     if (center && zoom) {
-      map.setView(center, zoom);
+      // Use flyTo for smooth transition when user location is detected
+      map.flyTo(center, zoom, { duration: 1.5 });
     }
   }, [center, zoom, map]);
   

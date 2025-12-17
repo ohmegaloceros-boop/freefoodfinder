@@ -67,9 +67,17 @@ function App() {
           const { latitude, longitude, accuracy } = position.coords;
           const userPos = [latitude, longitude];
           setUserLocation(userPos);
-          setMapCenter(userPos);
-          setMapZoom(12); // Zoom in closer to user's location
-          console.log(`✓ User location detected: [${latitude.toFixed(4)}, ${longitude.toFixed(4)}] ±${Math.round(accuracy)}m`);
+          
+          // Only center map if accuracy is reasonable (< 50km)
+          // Desktop IP geolocation is often inaccurate
+          if (accuracy < 50000) {
+            setMapCenter(userPos);
+            setMapZoom(12);
+            console.log(`✓ User location detected: [${latitude.toFixed(4)}, ${longitude.toFixed(4)}] ±${Math.round(accuracy)}m`);
+          } else {
+            console.log(`⚠ Location accuracy too low (±${Math.round(accuracy/1000)}km) - using default center`);
+            console.log('💡 Tip: Use the search bar to find your city');
+          }
         },
         (error) => {
           console.error('❌ Geolocation error:', {
@@ -80,6 +88,7 @@ function App() {
                      error.code === 3 ? 'Timeout' : 'Unknown'
           });
           console.log('📍 Using default center: Geographic center of USA');
+          console.log('💡 Tip: Use the search bar to find your city');
           // Keep default center and zoom
         },
         {
