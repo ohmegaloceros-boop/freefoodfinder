@@ -76,8 +76,8 @@ function App() {
         },
         {
           enableHighAccuracy: false,
-          timeout: 5000,
-          maximumAge: 0
+          timeout: 10000, // Increased to 10 seconds
+          maximumAge: 300000 // Allow cached position up to 5 minutes old
         }
       );
     } else {
