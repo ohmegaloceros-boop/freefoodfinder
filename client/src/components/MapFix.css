@@ -1,13 +1,17 @@
-/* Fix zoom controls position below fixed header */
+/* Position zoom controls in bottom-right on desktop */
 .leaflet-top {
   position: fixed !important;
-  top: var(--header-height, 60px) !important;
-  margin-top: 15px !important;
+  top: auto !important;
+  bottom: 90px !important; /* Above search bar */
+  right: 10px !important;
 }
 
-/* Ensure zoom controls stay below header on mobile */
+/* Keep zoom controls below header on mobile */
 @media (max-width: 768px) {
   .leaflet-top {
+    top: var(--header-height, 60px) !important;
+    bottom: auto !important;
+    right: auto !important;
     margin-top: 15px !important;
   }
 }

@@ -3,7 +3,7 @@
  * 
  * Features:
  * - Expandable search input with magnifying glass icon trigger
- * - Desktop: positioned in top-right corner
+ * - Desktop: positioned in bottom-right corner
  * - Mobile: positioned above hamburger menu at bottom-left
  * - Animated expansion and error display
  * - Conditional button styling (green Go / red Close)
@@ -13,7 +13,7 @@
 
 .search-bar {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   z-index: 1001; /* Above map, below sidebar (when sidebar open) */
   display: flex;
