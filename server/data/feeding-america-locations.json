@@ -1,0 +1,362 @@
+[
+  {
+    "name": "Food Bank For New York City",
+    "type": "foodbank",
+    "address": "39 Broadway, 10th Floor",
+    "city": "New York",
+    "state": "NY",
+    "zipCode": "10006",
+    "coordinates": {
+      "lat": 40.7074,
+      "lng": -74.0113
+    },
+    "phone": "(212) 566-7855",
+    "website": "https://www.foodbanknyc.org",
+    "description": "Feeding America member food bank serving New York.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-1"
+  },
+  {
+    "name": "Los Angeles Regional Food Bank",
+    "type": "foodbank",
+    "address": "1734 E 41st St",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zipCode": "90058",
+    "coordinates": {
+      "lat": 34.0073,
+      "lng": -118.2267
+    },
+    "phone": "(323) 234-3030",
+    "website": "https://www.lafoodbank.org",
+    "description": "Feeding America member food bank serving Los Angeles.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-2"
+  },
+  {
+    "name": "Greater Chicago Food Depository",
+    "type": "foodbank",
+    "address": "4100 W Ann Lurie Pl",
+    "city": "Chicago",
+    "state": "IL",
+    "zipCode": "60632",
+    "coordinates": {
+      "lat": 41.8234,
+      "lng": -87.7284
+    },
+    "phone": "(773) 247-3663",
+    "website": "https://www.chicagosfoodbank.org",
+    "description": "Feeding America member food bank serving Chicago.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-3"
+  },
+  {
+    "name": "Houston Food Bank",
+    "type": "foodbank",
+    "address": "535 Portwall St",
+    "city": "Houston",
+    "state": "TX",
+    "zipCode": "77029",
+    "coordinates": {
+      "lat": 29.7328,
+      "lng": -95.2956
+    },
+    "phone": "(713) 547-3663",
+    "website": "https://www.houstonfoodbank.org",
+    "description": "Feeding America member food bank serving Houston.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-4"
+  },
+  {
+    "name": "Greater Boston Food Bank",
+    "type": "foodbank",
+    "address": "70 South Bay Ave",
+    "city": "Boston",
+    "state": "MA",
+    "zipCode": "02118",
+    "coordinates": {
+      "lat": 42.3357,
+      "lng": -71.0615
+    },
+    "phone": "(617) 427-5200",
+    "website": "https://www.gbfb.org",
+    "description": "Feeding America member food bank serving Boston.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-5"
+  },
+  {
+    "name": "Capital Area Food Bank (DC)",
+    "type": "foodbank",
+    "address": "4900 Puerto Rico Ave NE",
+    "city": "Washington",
+    "state": "DC",
+    "zipCode": "20017",
+    "coordinates": {
+      "lat": 38.9354,
+      "lng": -76.9968
+    },
+    "phone": "(202) 644-9800",
+    "website": "https://www.capitalareafoodbank.org",
+    "description": "Feeding America member food bank serving Washington.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-6"
+  },
+  {
+    "name": "North Texas Food Bank",
+    "type": "foodbank",
+    "address": "3677 Mapleshade Ln",
+    "city": "Plano",
+    "state": "TX",
+    "zipCode": "75075",
+    "coordinates": {
+      "lat": 33.044,
+      "lng": -96.7764
+    },
+    "phone": "(469) 399-1000",
+    "website": "https://www.ntfb.org",
+    "description": "Feeding America member food bank serving Plano.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-7"
+  },
+  {
+    "name": "Food Bank of the Rockies",
+    "type": "foodbank",
+    "address": "10700 E 45th Ave",
+    "city": "Denver",
+    "state": "CO",
+    "zipCode": "80239",
+    "coordinates": {
+      "lat": 39.78,
+      "lng": -104.8697
+    },
+    "phone": "(303) 371-9250",
+    "website": "https://www.foodbankrockies.org",
+    "description": "Feeding America member food bank serving Denver.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-8"
+  },
+  {
+    "name": "San Francisco-Marin Food Bank",
+    "type": "foodbank",
+    "address": "900 Pennsylvania Ave",
+    "city": "San Francisco",
+    "state": "CA",
+    "zipCode": "94107",
+    "coordinates": {
+      "lat": 37.7599,
+      "lng": -122.3958
+    },
+    "phone": "(415) 282-1900",
+    "website": "https://www.sfmfoodbank.org",
+    "description": "Feeding America member food bank serving San Francisco.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-9"
+  },
+  {
+    "name": "Atlanta Community Food Bank",
+    "type": "foodbank",
+    "address": "732 Joseph E Lowery Blvd NW",
+    "city": "Atlanta",
+    "state": "GA",
+    "zipCode": "30318",
+    "coordinates": {
+      "lat": 33.7672,
+      "lng": -84.418
+    },
+    "phone": "(404) 892-9822",
+    "website": "https://www.acfb.org",
+    "description": "Feeding America member food bank serving Atlanta.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-10"
+  },
+  {
+    "name": "Second Harvest Food Bank of Orange County",
+    "type": "foodbank",
+    "address": "8014 Marine Way",
+    "city": "Irvine",
+    "state": "CA",
+    "zipCode": "92618",
+    "coordinates": {
+      "lat": 33.6748,
+      "lng": -117.8603
+    },
+    "phone": "(949) 653-2900",
+    "website": "https://www.feedoc.org",
+    "description": "Feeding America member food bank serving Irvine.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-11"
+  },
+  {
+    "name": "Feeding America Tampa Bay",
+    "type": "foodbank",
+    "address": "4702 Transport Dr",
+    "city": "Tampa",
+    "state": "FL",
+    "zipCode": "33605",
+    "coordinates": {
+      "lat": 27.9728,
+      "lng": -82.4254
+    },
+    "phone": "(813) 254-1190",
+    "website": "https://www.feedingtampabay.org",
+    "description": "Feeding America member food bank serving Tampa.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-12"
+  },
+  {
+    "name": "Food Bank of the Southern Tier",
+    "type": "foodbank",
+    "address": "388 Upper Oakwood Ave",
+    "city": "Elmira Heights",
+    "state": "NY",
+    "zipCode": "14903",
+    "coordinates": {
+      "lat": 42.1306,
+      "lng": -76.8211
+    },
+    "phone": "(607) 796-6061",
+    "website": "https://www.foodbankst.org",
+    "description": "Feeding America member food bank serving Elmira Heights.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-13"
+  },
+  {
+    "name": "Three Square Food Bank (Las Vegas)",
+    "type": "foodbank",
+    "address": "4190 N Pecos Rd",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zipCode": "89115",
+    "coordinates": {
+      "lat": 36.1985,
+      "lng": -115.1186
+    },
+    "phone": "(702) 644-3663",
+    "website": "https://www.threesquare.org",
+    "description": "Feeding America member food bank serving Las Vegas.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-14"
+  },
+  {
+    "name": "Oregon Food Bank",
+    "type": "foodbank",
+    "address": "7900 SE Mcloughlin Blvd",
+    "city": "Portland",
+    "state": "OR",
+    "zipCode": "97202",
+    "coordinates": {
+      "lat": 45.4694,
+      "lng": -122.6437
+    },
+    "phone": "(503) 282-0555",
+    "website": "https://www.oregonfoodbank.org",
+    "description": "Feeding America member food bank serving Portland.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-15"
+  },
+  {
+    "name": "Food Bank of Central & Eastern North Carolina",
+    "type": "foodbank",
+    "address": "1924 Capital Blvd",
+    "city": "Raleigh",
+    "state": "NC",
+    "zipCode": "27604",
+    "coordinates": {
+      "lat": 35.8051,
+      "lng": -78.6168
+    },
+    "phone": "(919) 875-0707",
+    "website": "https://www.foodbankcenc.org",
+    "description": "Feeding America member food bank serving Raleigh.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-16"
+  },
+  {
+    "name": "Food Bank of the Heartland (Omaha)",
+    "type": "foodbank",
+    "address": "10525 J St",
+    "city": "Omaha",
+    "state": "NE",
+    "zipCode": "68127",
+    "coordinates": {
+      "lat": 41.2131,
+      "lng": -96.0861
+    },
+    "phone": "(402) 331-1213",
+    "website": "https://www.foodbankheartland.org",
+    "description": "Feeding America member food bank serving Omaha.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-17"
+  },
+  {
+    "name": "Community Food Bank of New Jersey",
+    "type": "foodbank",
+    "address": "31 Evans Terminal",
+    "city": "Hillside",
+    "state": "NJ",
+    "zipCode": "07205",
+    "coordinates": {
+      "lat": 40.6998,
+      "lng": -74.2249
+    },
+    "phone": "(908) 355-3663",
+    "website": "https://www.cfbnj.org",
+    "description": "Feeding America member food bank serving Hillside.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-18"
+  },
+  {
+    "name": "Gleaners Community Food Bank (Detroit)",
+    "type": "foodbank",
+    "address": "2131 Beaufait St",
+    "city": "Detroit",
+    "state": "MI",
+    "zipCode": "48207",
+    "coordinates": {
+      "lat": 42.3566,
+      "lng": -83.0089
+    },
+    "phone": "(313) 923-3535",
+    "website": "https://www.gcfb.org",
+    "description": "Feeding America member food bank serving Detroit.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-19"
+  },
+  {
+    "name": "Second Harvest Heartland (Minneapolis)",
+    "type": "foodbank",
+    "address": "1140 Gervais Ave",
+    "city": "Maplewood",
+    "state": "MN",
+    "zipCode": "55109",
+    "coordinates": {
+      "lat": 45.0063,
+      "lng": -93.0186
+    },
+    "phone": "(651) 484-5117",
+    "website": "https://www.2harvest.org",
+    "description": "Feeding America member food bank serving Maplewood.",
+    "hours": "Contact for hours",
+    "source": "Feeding America",
+    "id": "fa-20"
+  }
+]

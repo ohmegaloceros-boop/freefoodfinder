@@ -22,6 +22,10 @@ OSM_QUERIES = {
     'soup_kitchen': '[amenity=social_facility][social_facility=soup_kitchen]',
     'food_pantry': '[amenity=social_facility][social_facility=food_pantry]',
     'community_fridge': '[amenity=community_fridge]',
+    # Additional tags to catch more locations
+    'social_facility_general': '[amenity=social_facility][~"social_facility:for"~"food|meal"]',
+    'foodbank_by_name': '[name~"food bank|food pantry|food shelf",i]',
+    'feeding_program': '[amenity~"community_centre|social_centre"][~"description|note"~"food|meal|pantry",i]',
 }
 
 # US bounding box
