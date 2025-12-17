@@ -88,41 +88,46 @@ function App() {
   // ========== DATA FETCHING ==========
   
   /**
-   * Fetch all locations on mount
-   * Loads complete national dataset from API
+   * Fetch locations based on map viewport (lazy loading)
+   * Only loads locations visible in current map view for better performance
+   * Triggered when map bounds change or filters are toggled
+   * 
+   * Debounced to avoid excessive API calls during rapid panning/zooming
    */
   useEffect(() => {
-    fetch('/api/locations')
-      .then(res => res.json())
-      .then(data => {
-        setLocations(data);
-        setFilteredLocations(data);
-      })
-      .catch(err => {
-        console.error('Error fetching locations:', err);
-      });
-  }, []);
+    // Skip initial fetch until we have map bounds (after first render)
+    if (!mapBounds) return;
+    
+    // Debounce: Wait 300ms after user stops moving map before fetching
+    const timeoutId = setTimeout(() => {
+      // Build query parameters for server-side filtering
+      const params = new URLSearchParams();
+      params.append('bounds', `${mapBounds.north},${mapBounds.south},${mapBounds.east},${mapBounds.west}`);
+      
+      // Fetch filtered locations from server
+      fetch(`/api/locations?${params.toString()}`)
+        .then(res => res.json())
+        .then(data => {
+          setLocations(data);
+        })
+        .catch(err => {
+          console.error('Error fetching locations:', err);
+        });
+    }, 300); // 300ms debounce delay
+    
+    // Cleanup: Cancel pending fetch if bounds change again
+    return () => clearTimeout(timeoutId);
+  }, [mapBounds]); // Re-fetch when map viewport changes
 
   /**
-   * Filter locations based on selected types and viewport bounds
-   * Updates whenever user toggles filters or pans/zooms map
+   * Filter locations based on selected types
+   * Note: Viewport filtering now happens server-side for performance
+   * This only filters by type (foodbank, fridge, box)
    */
   useEffect(() => {
-    let filtered = locations.filter(location => selectedTypes[location.type]);
-    
-    // Filter by viewport if map bounds are available
-    if (mapBounds) {
-      filtered = filtered.filter(location => {
-        const { lat, lng } = location.coordinates;
-        return lat <= mapBounds.north && 
-               lat >= mapBounds.south && 
-               lng >= mapBounds.west && 
-               lng <= mapBounds.east;
-      });
-    }
-    
+    const filtered = locations.filter(location => selectedTypes[location.type]);
     setFilteredLocations(filtered);
-  }, [selectedTypes, locations, mapBounds]);
+  }, [selectedTypes, locations]);
 
   // ========== EVENT HANDLERS ==========
   
