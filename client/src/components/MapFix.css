@@ -2,12 +2,12 @@
 .leaflet-top {
   position: fixed !important;
   top: var(--header-height, 60px) !important;
-  margin-top: 10px !important;
+  margin-top: 15px !important;
 }
 
 /* Ensure zoom controls stay below header on mobile */
 @media (max-width: 768px) {
   .leaflet-top {
-    margin-top: 10px !important;
+    margin-top: 15px !important;
   }
 }
