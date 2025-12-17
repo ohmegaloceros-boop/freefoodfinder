@@ -62,7 +62,9 @@ app.get('/api/locations', (req, res) => {
   if (bounds) {
     const [north, south, east, west] = bounds.split(',').map(Number);
     locations = locations.filter(location => {
-      const { lat, lng } = location.coordinates;
+      // Support both formats: {coordinates: {lat, lng}} and {lat, lng}
+      const lat = location.coordinates ? location.coordinates.lat : location.lat;
+      const lng = location.coordinates ? location.coordinates.lng : location.lng;
       return lat <= north && lat >= south && lng <= east && lng >= west;
     });
   }

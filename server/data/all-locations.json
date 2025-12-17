@@ -15186,8 +15186,6 @@
   },
   {
     "name": "Spottswood Neighborhood Pantry",
-    "lat": 47.5412,
-    "lng": -122.3958,
     "city": "Seattle",
     "state": "WA",
     "address": "Seattle, WA",
@@ -15195,12 +15193,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-1"
+    "id": "little-pantry-1",
+    "coordinates": {
+      "lat": 47.5412,
+      "lng": -122.3958
+    }
   },
   {
     "name": "Alaska Junction Little Free Pantry",
-    "lat": 47.5665,
-    "lng": -122.3867,
     "city": "Seattle",
     "state": "WA",
     "address": "Seattle, WA",
@@ -15208,12 +15208,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-2"
+    "id": "little-pantry-2",
+    "coordinates": {
+      "lat": 47.5665,
+      "lng": -122.3867
+    }
   },
   {
     "name": "Kindness Cabinet",
-    "lat": 47.6587,
-    "lng": -122.3173,
     "city": "Seattle",
     "state": "WA",
     "address": "Seattle, WA",
@@ -15221,12 +15223,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-3"
+    "id": "little-pantry-3",
+    "coordinates": {
+      "lat": 47.6587,
+      "lng": -122.3173
+    }
   },
   {
     "name": "Water Ave Pantry",
-    "lat": 45.5053,
-    "lng": -122.6572,
     "city": "Portland",
     "state": "OR",
     "address": "Portland, OR",
@@ -15234,12 +15238,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-4"
+    "id": "little-pantry-4",
+    "coordinates": {
+      "lat": 45.5053,
+      "lng": -122.6572
+    }
   },
   {
     "name": "Little Free Pantry PDX",
-    "lat": 45.5231,
-    "lng": -122.6765,
     "city": "Portland",
     "state": "OR",
     "address": "Portland, OR",
@@ -15247,12 +15253,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-5"
+    "id": "little-pantry-5",
+    "coordinates": {
+      "lat": 45.5231,
+      "lng": -122.6765
+    }
   },
   {
     "name": "Unitarian Universalist San Mateo",
-    "lat": 37.5428,
-    "lng": -122.3108,
     "city": "San Mateo",
     "state": "CA",
     "address": "San Mateo, CA",
@@ -15260,12 +15268,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-6"
+    "id": "little-pantry-6",
+    "coordinates": {
+      "lat": 37.5428,
+      "lng": -122.3108
+    }
   },
   {
     "name": "Little Blue Pantry",
-    "lat": 37.8044,
-    "lng": -122.2712,
     "city": "Oakland",
     "state": "CA",
     "address": "Oakland, CA",
@@ -15273,12 +15283,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-7"
+    "id": "little-pantry-7",
+    "coordinates": {
+      "lat": 37.8044,
+      "lng": -122.2712
+    }
   },
   {
     "name": "Little Free Pantry Norwalk",
-    "lat": 33.9022,
-    "lng": -118.0817,
     "city": "Norwalk",
     "state": "CA",
     "address": "Norwalk, CA",
@@ -15286,12 +15298,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-8"
+    "id": "little-pantry-8",
+    "coordinates": {
+      "lat": 33.9022,
+      "lng": -118.0817
+    }
   },
   {
     "name": "Budlong Woods Little Free Pantry",
-    "lat": 41.9828,
-    "lng": -87.6923,
     "city": "Chicago",
     "state": "IL",
     "address": "Chicago, IL",
@@ -15299,12 +15313,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-9"
+    "id": "little-pantry-9",
+    "coordinates": {
+      "lat": 41.9828,
+      "lng": -87.6923
+    }
   },
   {
     "name": "Little Free Pantry Chicago",
-    "lat": 41.8781,
-    "lng": -87.6298,
     "city": "Chicago",
     "state": "IL",
     "address": "Chicago, IL",
@@ -15312,12 +15328,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-10"
+    "id": "little-pantry-10",
+    "coordinates": {
+      "lat": 41.8781,
+      "lng": -87.6298
+    }
   },
   {
     "name": "Patterson Park Little Pantry",
-    "lat": 40.7128,
-    "lng": -73.9569,
     "city": "Brooklyn",
     "state": "NY",
     "address": "Brooklyn, NY",
@@ -15325,12 +15343,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-11"
+    "id": "little-pantry-11",
+    "coordinates": {
+      "lat": 40.7128,
+      "lng": -73.9569
+    }
   },
   {
     "name": "Little Free Pantry Austin",
-    "lat": 30.2672,
-    "lng": -97.7431,
     "city": "Austin",
     "state": "TX",
     "address": "Austin, TX",
@@ -15338,12 +15358,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-12"
+    "id": "little-pantry-12",
+    "coordinates": {
+      "lat": 30.2672,
+      "lng": -97.7431
+    }
   },
   {
     "name": "Little Free Pantry Denver",
-    "lat": 39.7392,
-    "lng": -104.9903,
     "city": "Denver",
     "state": "CO",
     "address": "Denver, CO",
@@ -15351,12 +15373,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-13"
+    "id": "little-pantry-13",
+    "coordinates": {
+      "lat": 39.7392,
+      "lng": -104.9903
+    }
   },
   {
     "name": "Little Free Pantry Phoenix",
-    "lat": 33.4484,
-    "lng": -112.074,
     "city": "Phoenix",
     "state": "AZ",
     "address": "Phoenix, AZ",
@@ -15364,12 +15388,14 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-14"
+    "id": "little-pantry-14",
+    "coordinates": {
+      "lat": 33.4484,
+      "lng": -112.074
+    }
   },
   {
     "name": "Little Free Pantry Miami",
-    "lat": 25.7617,
-    "lng": -80.1918,
     "city": "Miami",
     "state": "FL",
     "address": "Miami, FL",
@@ -15377,7 +15403,11 @@
     "hours": "24/7",
     "phone": "",
     "type": "food_box",
-    "id": "little-pantry-15"
+    "id": "little-pantry-15",
+    "coordinates": {
+      "lat": 25.7617,
+      "lng": -80.1918
+    }
   },
   {
     "name": "CR Pantry",
